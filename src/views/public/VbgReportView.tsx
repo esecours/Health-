@@ -334,26 +334,26 @@ export const VbgReportView: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-20">
+    <div className="min-h-screen bg-white text-slate-800 pb-20">
       
       {/* Top Banner focused only on Action */}
-      <div className="bg-gradient-to-r from-rose-950 via-slate-900 to-rose-950 border-b border-rose-900/40 p-4 sm:p-6 shadow-xl relative overflow-hidden">
+      <div className="bg-slate-50 border-b border-slate-200 p-4 sm:p-6 shadow-sm relative overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
           <div className="flex items-center gap-3 text-center md:text-left">
-            <div className="w-12 h-12 rounded-2xl bg-rose-600/20 text-rose-400 border border-rose-500/30 flex items-center justify-center shrink-0 shadow-inner">
-              <ShieldAlert className="w-6 h-6 animate-pulse" />
+            <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 border border-rose-200 flex items-center justify-center shrink-0 shadow-sm">
+              <ShieldAlert className="w-6 h-6" />
             </div>
             <div>
               <div className="flex items-center gap-2 justify-center md:justify-start">
-                <span className="px-2 py-0.5 rounded-md bg-rose-500/20 text-rose-300 text-[10px] font-black uppercase tracking-wider border border-rose-500/30">
+                <span className="px-2 py-0.5 rounded-md bg-rose-50 text-rose-700 text-[10px] font-black uppercase tracking-wider border border-rose-200">
                   Signalement Rapide & Sécurisé
                 </span>
-                <span className="text-xs text-rose-200/80 hidden sm:inline">• Bénin</span>
+                <span className="text-xs text-slate-500 hidden sm:inline">• Bénin</span>
               </div>
-              <h1 className="text-lg sm:text-2xl font-black font-display text-white mt-0.5">
+              <h1 className="text-lg sm:text-2xl font-black font-display text-slate-900 mt-0.5">
                 Portail de Dénonciation VBG
               </h1>
-              <p className="text-xs text-slate-300 max-w-2xl mt-1">
+              <p className="text-xs text-slate-600 max-w-2xl mt-1">
                 Faites un signalement confidentiel par écrit ou par message vocal. Un code secret vous sera remis à la fin pour le suivi de votre dossier.
               </p>
             </div>
@@ -365,14 +365,14 @@ export const VbgReportView: React.FC = () => {
       <div className="max-w-4xl mx-auto px-3 sm:px-6 pt-6 space-y-6">
 
         {/* Procédure Simple Card */}
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-4 sm:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl">
+        <div className="bg-slate-50 border border-slate-200 rounded-3xl p-4 sm:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center border border-teal-500/20 shrink-0 mt-0.5">
-              <Info className="w-5 h-5 text-teal-300" />
+            <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center border border-teal-100 shrink-0 mt-0.5">
+              <Info className="w-5 h-5 text-teal-600" />
             </div>
             <div>
-              <h3 className="text-xs font-bold text-teal-300 uppercase tracking-wider">Comment faire votre dénonciation ?</h3>
-              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+              <h3 className="text-xs font-bold text-teal-800 uppercase tracking-wider">Comment faire votre dénonciation ?</h3>
+              <p className="text-xs text-slate-600 mt-1 leading-relaxed">
                 1. Choisissez la méthode (Formulaire écrit ou Enregistrement vocal).<br/>
                 2. Spécifiez la localisation et la nature de la violence.<br/>
                 3. Optionnel : Laissez vos coordonnées de retour pour être tenu(e) au courant.<br/>
@@ -383,14 +383,14 @@ export const VbgReportView: React.FC = () => {
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex items-center justify-center gap-1.5 bg-slate-900 p-1 rounded-2xl border border-slate-800 max-w-md mx-auto shadow-lg">
+        <div className="flex items-center justify-center gap-1.5 bg-slate-100 p-1 rounded-2xl border border-slate-200 max-w-md mx-auto shadow-sm">
           <button
             type="button"
             onClick={() => setActiveTab('report')}
             className={`flex-1 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               activeTab === 'report'
                 ? 'bg-gradient-to-r from-rose-600 to-rose-700 text-white shadow-md'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50'
             }`}
           >
             <ShieldAlert className="w-4 h-4" />
@@ -403,7 +403,7 @@ export const VbgReportView: React.FC = () => {
             className={`flex-1 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               activeTab === 'track'
                 ? 'bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-md'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50'
             }`}
           >
             <Search className="w-4 h-4" />
@@ -417,37 +417,37 @@ export const VbgReportView: React.FC = () => {
             
             {/* Modal de Confirmation après soumission */}
             {createdCode ? (
-              <div className="bg-slate-900 border-2 border-emerald-500/50 rounded-3xl p-6 sm:p-10 text-center space-y-6 shadow-2xl max-w-xl mx-auto my-4">
-                <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto shadow-inner animate-bounce">
+              <div className="bg-slate-50 border-2 border-emerald-500/50 rounded-3xl p-6 sm:p-10 text-center space-y-6 shadow-md max-w-xl mx-auto my-4">
+                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-full flex items-center justify-center mx-auto shadow-sm">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
 
                 <div className="space-y-2">
-                  <span className="px-3 py-1 bg-emerald-950 text-emerald-300 rounded-full text-[11px] font-bold uppercase tracking-wider border border-emerald-700/50">
+                  <span className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-[11px] font-bold uppercase tracking-wider border border-emerald-200">
                     Dénonciation Sécurisée & Enregistrée
                   </span>
-                  <h2 className="text-xl sm:text-2xl font-black text-white">
+                  <h2 className="text-xl sm:text-2xl font-black text-slate-900">
                     Votre signalement a été transmis
                   </h2>
-                  <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
+                  <p className="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed">
                     L'équipe sociale de HEALTHDEV ONG a été alertée en toute confidentialité. Conservez précieusement le code ci-dessous.
                   </p>
                 </div>
 
                 {/* Box du Code Confidentiel */}
-                <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3 text-left">
-                  <div className="flex items-center justify-between text-xs text-slate-400">
-                    <span className="flex items-center gap-1.5 font-bold text-amber-400">
+                <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-3 text-left animate-in fade-in">
+                  <div className="flex items-center justify-between text-xs text-slate-500">
+                    <span className="flex items-center gap-1.5 font-bold text-amber-600">
                       <Lock className="w-3.5 h-3.5" />
                       Code Secret de Suivi
                     </span>
-                    <span className="text-[9px] bg-slate-800 px-2 py-0.5 rounded text-slate-300">
+                    <span className="text-[9px] bg-slate-100 px-2 py-0.5 rounded text-slate-600">
                       À NOTER
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between bg-slate-900 p-3 rounded-xl border border-slate-700">
-                    <span className="font-mono text-2xl font-black text-emerald-400 tracking-wider">
+                  <div className="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-200">
+                    <span className="font-mono text-2xl font-black text-emerald-600 tracking-wider">
                       {createdCode}
                     </span>
                     <button
@@ -460,21 +460,21 @@ export const VbgReportView: React.FC = () => {
                     </button>
                   </div>
 
-                  <p className="text-[10px] text-slate-400 leading-normal">
+                  <p className="text-[10px] text-slate-500 leading-normal">
                     Ce code vous servira à communiquer anonymement avec nos conseillères sur l'onglet "Suivre mon Dossier" pour échanger ou transmettre de nouveaux détails.
                   </p>
                 </div>
 
                 <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <button
-                    type="button"
-                    onClick={() => {
-                      setSearchCode(createdCode);
-                      setActiveTab('track');
-                      const reportObj = getVbgReportByCode(createdCode);
-                      setSearchedReport(reportObj);
-                    }}
-                    className="w-full sm:w-auto px-5 py-2.5 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-500 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg cursor-pointer transition-all"
+                     type="button"
+                     onClick={() => {
+                       setSearchCode(createdCode);
+                       setActiveTab('track');
+                       const reportObj = getVbgReportByCode(createdCode);
+                       setSearchedReport(reportObj);
+                     }}
+                     className="w-full sm:w-auto px-5 py-2.5 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-500 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm cursor-pointer transition-all"
                   >
                     <Search className="w-4 h-4" />
                     <span>Accéder au suivi</span>
@@ -486,7 +486,7 @@ export const VbgReportView: React.FC = () => {
                       setCreatedCode(null);
                       setDescription('');
                     }}
-                    className="w-full sm:w-auto px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold border border-slate-700 cursor-pointer transition-all"
+                    className="w-full sm:w-auto px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold border border-slate-200 cursor-pointer transition-all"
                   >
                     Nouveau signalement
                   </button>
@@ -495,15 +495,15 @@ export const VbgReportView: React.FC = () => {
             ) : (
 
               /* Formulaire Principal */
-              <form onSubmit={handleSubmitReport} className="bg-slate-900 rounded-3xl border border-slate-800 p-4 sm:p-7 space-y-6 shadow-2xl">
+              <form onSubmit={handleSubmitReport} className="bg-white rounded-3xl border border-slate-200 p-4 sm:p-7 space-y-6 shadow-sm">
                 
                 {/* Section 1: Mode d'enregistrement */}
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
-                    <span className="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-400 font-bold text-xs flex items-center justify-center border border-rose-500/30">
+                  <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
+                    <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-bold text-xs flex items-center justify-center border border-rose-200">
                       1
                     </span>
-                    <h2 className="text-sm sm:text-base font-bold text-white">
+                    <h2 className="text-sm sm:text-base font-bold text-slate-900">
                       Comment préférez-vous dénoncer les faits ?
                     </h2>
                   </div>
@@ -514,16 +514,16 @@ export const VbgReportView: React.FC = () => {
                       onClick={() => setReportMethod('text')}
                       className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex items-start gap-3 ${
                         reportMethod === 'text'
-                          ? 'bg-rose-950/40 border-rose-500 text-white shadow-lg shadow-rose-950/20'
-                          : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                          ? 'bg-rose-50/50 border-rose-500 text-slate-900 shadow-sm'
+                          : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300'
                       }`}
                     >
-                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${reportMethod === 'text' ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-400'}`}>
+                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${reportMethod === 'text' ? 'bg-rose-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
                         <FileText className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="font-bold text-xs text-white block">Formulaire écrit classique</span>
-                        <p className="text-[10px] text-slate-400 mt-1 leading-normal">
+                        <span className="font-bold text-xs text-slate-900 block">Formulaire écrit classique</span>
+                        <p className="text-[10px] text-slate-500 mt-1 leading-normal">
                           Rédigez manuellement la description détaillée des événements constatés.
                         </p>
                       </div>
@@ -534,16 +534,16 @@ export const VbgReportView: React.FC = () => {
                       onClick={() => setReportMethod('voice')}
                       className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex items-start gap-3 ${
                         reportMethod === 'voice'
-                          ? 'bg-rose-950/40 border-rose-500 text-white shadow-lg shadow-rose-950/20'
-                          : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                          ? 'bg-rose-50/50 border-rose-500 text-slate-900 shadow-sm'
+                          : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300'
                       }`}
                     >
-                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${reportMethod === 'voice' ? 'bg-rose-600 text-white animate-pulse' : 'bg-slate-800 text-slate-400'}`}>
+                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${reportMethod === 'voice' ? 'bg-rose-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
                         <Mic className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="font-bold text-xs text-white block">Enregistrement vocal direct</span>
-                        <p className="text-[10px] text-slate-400 mt-1 leading-normal">
+                        <span className="font-bold text-xs text-slate-900 block">Enregistrement vocal direct</span>
+                        <p className="text-[10px] text-slate-500 mt-1 leading-normal">
                           Exprimez-vous au micro à vive voix sans avoir à écrire l'histoire.
                         </p>
                       </div>
@@ -552,30 +552,30 @@ export const VbgReportView: React.FC = () => {
                 </div>
 
                 {/* Section d'enregistrement vocal ou écrite dynamique */}
-                <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
                   {reportMethod === 'voice' ? (
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-slate-300">Enregistrement audio en direct</span>
-                        <span className="text-[10px] bg-rose-950/60 border border-rose-800 text-rose-300 px-2 py-0.5 rounded-full font-bold">
+                        <span className="text-xs font-bold text-slate-700">Enregistrement audio en direct</span>
+                        <span className="text-[10px] bg-rose-50 border border-rose-200 text-rose-700 px-2 py-0.5 rounded-full font-bold">
                           Anonyme & Chiffré
                         </span>
                       </div>
 
-                      <div className="flex flex-col items-center justify-center p-6 bg-slate-900 rounded-xl border border-slate-800 space-y-4">
+                      <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl border border-slate-200 space-y-4 shadow-sm">
                         
                         {recordingState === 'idle' && (
                           <div className="text-center space-y-3">
-                            <div className="w-14 h-14 rounded-full bg-slate-800 text-slate-300 flex items-center justify-center border border-slate-700 shadow-inner">
-                              <Mic className="w-6 h-6 text-slate-400" />
+                            <div className="w-14 h-14 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center border border-slate-200 shadow-sm mx-auto">
+                              <Mic className="w-6 h-6 text-slate-500" />
                             </div>
-                            <p className="text-xs text-slate-400 max-w-xs">
+                            <p className="text-xs text-slate-500 max-w-xs">
                               Cliquez ci-dessous pour démarrer l'enregistrement de votre témoignage audio.
                             </p>
                             <button
                               type="button"
                               onClick={startRecording}
-                              className="px-5 py-2 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-md"
+                              className="px-5 py-2 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-sm mx-auto"
                             >
                               <Mic className="w-4 h-4 animate-pulse" />
                               Démarrer l'enregistrement
@@ -585,21 +585,21 @@ export const VbgReportView: React.FC = () => {
 
                         {recordingState === 'recording' && (
                           <div className="text-center space-y-3">
-                            <div className="w-14 h-14 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center border border-rose-500 animate-pulse">
-                              <span className="w-3 h-3 rounded-full bg-rose-500" />
+                            <div className="w-14 h-14 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center border border-rose-300 animate-pulse mx-auto">
+                              <span className="w-3 h-3 rounded-full bg-rose-600" />
                             </div>
                             <div className="space-y-1">
-                              <p className="text-xs font-mono font-bold text-rose-400 animate-pulse">
+                              <p className="text-xs font-mono font-bold text-rose-600 animate-pulse">
                                 ENREGISTREMENT EN COURS : {formatDuration(recordingDuration)}
                               </p>
-                              <p className="text-[10px] text-slate-400">Exprimez-vous clairement à proximité de votre micro.</p>
+                              <p className="text-[10px] text-slate-500">Exprimez-vous clairement à proximité de votre micro.</p>
                             </div>
                             <button
                               type="button"
                               onClick={stopRecording}
-                              className="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 rounded-xl text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer"
+                              className="px-5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 rounded-xl text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer mx-auto"
                             >
-                              <Square className="w-4 h-4 text-rose-500" />
+                              <Square className="w-4 h-4 text-rose-600" />
                               Arrêter & Valider
                             </button>
                           </div>
@@ -607,18 +607,18 @@ export const VbgReportView: React.FC = () => {
 
                         {recordingState === 'recorded' && (
                           <div className="text-center space-y-3 w-full">
-                            <div className="w-14 h-14 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/30 mx-auto">
-                              <Volume2 className="w-6 h-6 text-emerald-400" />
+                            <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200 mx-auto">
+                              <Volume2 className="w-6 h-6 text-emerald-500" />
                             </div>
                             <div className="space-y-1">
-                              <p className="text-xs font-bold text-emerald-400">Enregistrement capturé avec succès</p>
-                              <p className="text-[10px] text-slate-400">Durée totale : {formatDuration(recordingDuration)}</p>
+                              <p className="text-xs font-bold text-emerald-700">Enregistrement capturé avec succès</p>
+                              <p className="text-[10px] text-slate-500">Durée totale : {formatDuration(recordingDuration)}</p>
                             </div>
 
                             {/* Audio Player */}
                             {audioUrl && (
                               <div className="max-w-md mx-auto w-full pt-1">
-                                <audio src={audioUrl} controls className="w-full h-10 rounded-lg bg-slate-950 px-2 focus:outline-none" />
+                                <audio src={audioUrl} controls className="w-full h-10 rounded-lg bg-slate-100 px-2 focus:outline-none" />
                               </div>
                             )}
 
@@ -626,9 +626,9 @@ export const VbgReportView: React.FC = () => {
                               <button
                                 type="button"
                                 onClick={resetRecording}
-                                className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-bold flex items-center gap-1.5 border border-slate-700 cursor-pointer"
+                                className="px-4 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-bold flex items-center gap-1.5 border border-slate-300 cursor-pointer"
                               >
-                                <Trash2 className="w-3.5 h-3.5 text-slate-400" />
+                                <Trash2 className="w-3.5 h-3.5 text-slate-500" />
                                 Recommencer
                               </button>
                             </div>
@@ -640,8 +640,8 @@ export const VbgReportView: React.FC = () => {
                   ) : (
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <label className="text-xs font-bold text-slate-300">
-                          Description écrite des faits <span className="text-rose-400">*</span> :
+                        <label className="text-xs font-bold text-slate-700">
+                          Description écrite des faits <span className="text-rose-600">*</span> :
                         </label>
                         <span className="text-[10px] text-slate-500">Confidentialité garantie</span>
                       </div>
@@ -650,7 +650,7 @@ export const VbgReportView: React.FC = () => {
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                         placeholder="Décrivez précisément ce qui s'est passé (contexte, date, heure, lieu précis, besoins urgents)..."
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500 leading-relaxed placeholder:text-slate-500"
+                        className="w-full bg-white border border-slate-300 rounded-xl p-3 text-xs text-slate-900 focus:outline-none focus:border-rose-500 leading-relaxed placeholder:text-slate-400"
                       />
                     </div>
                   )}
@@ -658,22 +658,22 @@ export const VbgReportView: React.FC = () => {
 
                 {/* Section 2: Localisation */}
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
-                    <span className="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-400 font-bold text-xs flex items-center justify-center border border-rose-500/30">
+                  <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
+                    <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-bold text-xs flex items-center justify-center border border-rose-200">
                       2
                     </span>
-                    <h2 className="text-sm sm:text-base font-bold text-white">
+                    <h2 className="text-sm sm:text-base font-bold text-slate-900">
                       Où et quand se sont déroulés les faits ?
                     </h2>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-slate-300 mb-1">Département :</label>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Département :</label>
                       <select
                         value={department}
                         onChange={e => handleDepartmentChange(e.target.value)}
-                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500 cursor-pointer"
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-rose-500 cursor-pointer animate-in fade-in"
                       >
                         {BENIN_DEPARTMENTS.map(d => (
                           <option key={d} value={d}>{d}</option>
@@ -682,11 +682,11 @@ export const VbgReportView: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-300 mb-1">Commune :</label>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Commune :</label>
                       <select
                         value={commune}
                         onChange={e => setCommune(e.target.value)}
-                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500 cursor-pointer"
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-rose-500 cursor-pointer"
                       >
                         {(COMMUNES_BY_DEPT[department] || []).map(c => (
                           <option key={c} value={c}>{c}</option>
@@ -695,35 +695,35 @@ export const VbgReportView: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-300 mb-1">Date approximative :</label>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Date approximative :</label>
                       <input
                         type="date"
                         value={incidentDate}
                         onChange={e => setIncidentDate(e.target.value)}
-                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500"
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-rose-500"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-300 mb-1">Quartier / Village / Précisions de localisation :</label>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Quartier / Village / Précisions de localisation :</label>
                     <input
                       type="text"
                       value={locationDetails}
                       onChange={e => setLocationDetails(e.target.value)}
                       placeholder="Ex: Quartier Guéma, derrière le grand marché"
-                      className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500"
+                      className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-rose-500 placeholder:text-slate-400"
                     />
                   </div>
                 </div>
 
                 {/* Section 3: Nature de la violence */}
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
-                    <span className="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-400 font-bold text-xs flex items-center justify-center border border-rose-500/30">
+                  <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
+                    <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-bold text-xs flex items-center justify-center border border-rose-200">
                       3
                     </span>
-                    <h2 className="text-sm sm:text-base font-bold text-white">
+                    <h2 className="text-sm sm:text-base font-bold text-slate-900">
                       Type de Violence & Niveau d'urgence
                     </h2>
                   </div>
@@ -739,18 +739,18 @@ export const VbgReportView: React.FC = () => {
                         }}
                         className={`p-3 rounded-xl border text-left transition-all cursor-pointer flex items-start gap-2.5 ${
                           vbgType === typeItem.id
-                            ? 'bg-rose-950/40 border-rose-500 text-white ring-1 ring-rose-500'
-                            : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'
+                            ? 'bg-rose-50/50 border-rose-500 text-slate-900 ring-1 ring-rose-500'
+                            : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'
                         }`}
                       >
                         <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${
-                          vbgType === typeItem.id ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-400'
+                          vbgType === typeItem.id ? 'bg-rose-600 text-white' : 'bg-slate-100 text-slate-500'
                         }`}>
                           <ShieldAlert className="w-3.5 h-3.5" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-xs text-white">{typeItem.label}</h3>
-                          <p className="text-[10px] text-slate-400 leading-snug mt-0.5">{typeItem.desc}</p>
+                          <h3 className="font-bold text-xs text-slate-800">{typeItem.label}</h3>
+                          <p className="text-[10px] text-slate-500 leading-snug mt-0.5">{typeItem.desc}</p>
                         </div>
                       </button>
                     ))}
@@ -758,11 +758,11 @@ export const VbgReportView: React.FC = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                     <div>
-                      <label className="block text-xs font-bold text-slate-300 mb-1">Niveau d'Urgence :</label>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Niveau d'Urgence :</label>
                       <div className="flex gap-1">
                         {[
-                          { id: 'medium', label: 'Standard', color: 'bg-slate-800 border-slate-700 text-slate-300' },
-                          { id: 'high', label: 'Haute (Inquiétude)', color: 'bg-orange-950/80 border-orange-700 text-orange-300' },
+                          { id: 'medium', label: 'Standard', color: 'bg-slate-100 border-slate-300 text-slate-800' },
+                          { id: 'high', label: 'Haute (Inquiétude)', color: 'bg-orange-50 border-orange-200 text-orange-800' },
                           { id: 'critical', label: '🔴 Urgent / Immédiat', color: 'bg-rose-600 border-rose-500 text-white animate-pulse' }
                         ].map(u => (
                           <button
@@ -771,8 +771,8 @@ export const VbgReportView: React.FC = () => {
                             onClick={() => setUrgencyLevel(u.id as VbgUrgencyLevel)}
                             className={`flex-1 py-2 rounded-lg text-[11px] font-bold border transition-all cursor-pointer ${
                               urgencyLevel === u.id
-                                ? `${u.color} shadow-md`
-                                : 'bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700'
+                                ? `${u.color} shadow-sm`
+                                : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'
                             }`}
                           >
                             {u.label}
@@ -782,11 +782,11 @@ export const VbgReportView: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-300 mb-1">Rapport avec la victime :</label>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">Rapport avec la victime :</label>
                       <select
                         value={reporterRelation}
                         onChange={e => setReporterRelation(e.target.value as any)}
-                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500 cursor-pointer"
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-rose-500 cursor-pointer"
                       >
                         <option value="victim">Je suis la victime elle-même</option>
                         <option value="witness">Je suis témoin direct des faits</option>
@@ -800,16 +800,16 @@ export const VbgReportView: React.FC = () => {
 
                 {/* Section 4: Retour de dénonciation - OPTIONNEL (Explicitement demandé par l'utilisateur) */}
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
-                    <span className="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold text-xs flex items-center justify-center border border-emerald-500/30">
+                  <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
+                    <span className="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center border border-emerald-200">
                       4
                     </span>
-                    <h2 className="text-sm sm:text-base font-bold text-white">
+                    <h2 className="text-sm sm:text-base font-bold text-slate-900">
                       Souhaitez-vous recevoir un retour sur l'avancement ?
                     </h2>
                   </div>
 
-                  <div className="p-4 bg-slate-950 border border-slate-800 rounded-2xl space-y-4">
+                  <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
                     <label className="flex items-start gap-2.5 cursor-pointer">
                       <input
                         type="checkbox"
@@ -822,21 +822,21 @@ export const VbgReportView: React.FC = () => {
                             setIsAnonymous(true);
                           }
                         }}
-                        className="mt-0.5 rounded border-slate-700 bg-slate-900 text-teal-600 focus:ring-0 cursor-pointer"
+                        className="mt-0.5 rounded border-slate-300 bg-white text-teal-600 focus:ring-0 cursor-pointer"
                       />
                       <div>
-                        <span className="block text-xs font-bold text-slate-200">Oui, je souhaite que HEALTHDEV me tienne informé(e)</span>
-                        <span className="block text-[10px] text-slate-400 leading-normal mt-0.5">
+                        <span className="block text-xs font-bold text-slate-800">Oui, je souhaite que HEALTHDEV me tienne informé(e)</span>
+                        <span className="block text-[10px] text-slate-500 leading-normal mt-0.5">
                           En cochant cette option, vous pouvez renseigner vos coordonnées ci-dessous pour recevoir le suivi directement. Vos données restent strictement confidentielles.
                         </span>
                       </div>
                     </label>
 
                     {wantFeedback && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-800/60 animate-in fade-in">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200 animate-in fade-in">
                         <div>
-                          <label className="block text-xs font-bold text-slate-300 mb-1">
-                            Votre adresse (Email ou Domicile / Ville) <span className="text-rose-400">*</span> :
+                          <label className="block text-xs font-bold text-slate-700 mb-1">
+                            Votre adresse (Email ou Domicile / Ville) <span className="text-rose-600">*</span> :
                           </label>
                           <input
                             type="text"
@@ -844,13 +844,13 @@ export const VbgReportView: React.FC = () => {
                             value={reporterAddress}
                             onChange={e => setReporterAddress(e.target.value)}
                             placeholder="Ex: Cotonou, quartier Fidjrossè ou email@domaine.com"
-                            className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-teal-500"
+                            className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-teal-500"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-xs font-bold text-slate-300 mb-1">
-                            Votre numéro de téléphone / WhatsApp <span className="text-rose-400">*</span> :
+                          <label className="block text-xs font-bold text-slate-700 mb-1">
+                            Votre numéro de téléphone / WhatsApp <span className="text-rose-600">*</span> :
                           </label>
                           <input
                             type="text"
@@ -858,18 +858,18 @@ export const VbgReportView: React.FC = () => {
                             value={reporterPhone}
                             onChange={e => setReporterPhone(e.target.value)}
                             placeholder="Ex: +229 97 00 00 00"
-                            className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-teal-500"
+                            className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-teal-500"
                           />
                         </div>
 
                         <div className="sm:col-span-2">
-                          <label className="block text-xs font-bold text-slate-300 mb-1">Votre Nom & Prénom (Optionnel) :</label>
+                          <label className="block text-xs font-bold text-slate-700 mb-1">Votre Nom & Prénom (Optionnel) :</label>
                           <input
                             type="text"
                             value={reporterName}
                             onChange={e => setReporterName(e.target.value)}
                             placeholder="Ex: Aïchatou SOULEYMANE"
-                            className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500"
+                            className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-teal-500"
                           />
                         </div>
                       </div>
@@ -878,16 +878,16 @@ export const VbgReportView: React.FC = () => {
                 </div>
 
                 {/* Submit Action Block */}
-                <div className="pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="text-[10px] text-slate-400 flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <div className="pt-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="text-[10px] text-slate-500 flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                     <span>HEALTHDEV ONG garantit la sécurité absolue de vos enregistrements et écrits.</span>
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-rose-600 via-rose-500 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 cursor-pointer"
+                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-rose-600 via-rose-500 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <span>Transmission cryptée en cours...</span>
@@ -911,15 +911,15 @@ export const VbgReportView: React.FC = () => {
           <div className="space-y-6 animate-in fade-in duration-200">
             
             {/* Recherche par Code */}
-            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4 shadow-2xl text-center">
-              <span className="px-3 py-1 bg-teal-950 text-teal-300 rounded-full text-[10px] font-bold uppercase tracking-wider border border-teal-700/50">
+            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-4 shadow-sm text-center">
+              <span className="px-3 py-1 bg-teal-50 text-teal-700 rounded-full text-[10px] font-bold uppercase tracking-wider border border-teal-200">
                 Espace de Suivi Anonyme
               </span>
-              <h2 className="text-lg sm:text-xl font-black text-white">
+              <h2 className="text-lg sm:text-xl font-black text-slate-900">
                 Consulter l'avancement de votre dossier
               </h2>
-              <p className="text-xs text-slate-300 max-w-sm mx-auto">
-                Saisissez votre code confidentiel (ex : <code className="text-amber-400 font-bold">VBG-2026-XXXX</code>) pour suivre les étapes et les messages de HEALTHDEV.
+              <p className="text-xs text-slate-600 max-w-sm mx-auto">
+                Saisissez votre code confidentiel (ex : <code className="text-amber-600 font-bold">VBG-2026-XXXX</code>) pour suivre les étapes et les messages de HEALTHDEV.
               </p>
 
               <form onSubmit={handleSearchTracking} className="flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto pt-2">
@@ -928,11 +928,11 @@ export const VbgReportView: React.FC = () => {
                   value={searchCode}
                   onChange={e => setSearchCode(e.target.value)}
                   placeholder="Ex: VBG-2026-1234"
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono placeholder:font-sans focus:outline-none focus:border-teal-500 uppercase tracking-wider"
+                  className="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 font-mono placeholder:font-sans focus:outline-none focus:border-teal-500 uppercase tracking-wider"
                 />
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2.5 bg-teal-600 hover:bg-teal-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 cursor-pointer transition-all"
+                  className="w-full sm:w-auto px-5 py-2.5 bg-teal-600 hover:bg-teal-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 cursor-pointer transition-all shrink-0"
                 >
                   <Search className="w-4 h-4" />
                   <span>Rechercher</span>
@@ -942,29 +942,29 @@ export const VbgReportView: React.FC = () => {
 
             {/* Aucun signalement trouvé */}
             {searchedReport === null && (
-              <div className="bg-slate-900 border border-rose-950 rounded-2xl p-5 text-center text-xs text-rose-300 space-y-1">
+              <div className="bg-rose-50 border border-rose-200 rounded-2xl p-5 text-center text-xs text-rose-700 space-y-1 animate-in fade-in">
                 <AlertTriangle className="w-6 h-6 text-rose-500 mx-auto" />
                 <p className="font-bold">Aucun signalement trouvé pour le code "{searchCode}".</p>
-                <p className="text-slate-400">Veuillez vérifier l'orthographe ou réessayer.</p>
+                <p className="text-slate-500">Veuillez vérifier l'orthographe ou réessayer.</p>
               </div>
             )}
 
             {/* Affichage des détails si trouvé */}
             {searchedReport && (
-              <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-7 space-y-5 shadow-2xl animate-in zoom-in-95 duration-150">
+              <div className="bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 space-y-5 shadow-sm animate-in zoom-in-95 duration-150">
                 
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-base font-black text-amber-400">
+                      <span className="font-mono text-base font-black text-amber-600">
                         {searchedReport.trackingCode}
                       </span>
                       <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold uppercase border ${
                         searchedReport.status === 'resolved'
-                          ? 'bg-emerald-950 text-emerald-300 border-emerald-700/50'
+                          ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                           : searchedReport.status === 'in_progress'
-                          ? 'bg-teal-950 text-teal-300 border-teal-700/50'
-                          : 'bg-amber-950 text-amber-300 border-amber-700/50'
+                          ? 'bg-teal-50 text-teal-700 border-teal-200'
+                          : 'bg-amber-50 text-amber-700 border-amber-200'
                       }`}>
                         {searchedReport.status === 'submitted' && 'Reçu'}
                         {searchedReport.status === 'under_review' && 'En cours d\'analyse'}
@@ -974,26 +974,26 @@ export const VbgReportView: React.FC = () => {
                       </span>
                     </div>
 
-                    <h3 className="text-xs font-bold text-white mt-1">
+                    <h3 className="text-xs font-bold text-slate-900 mt-1">
                       {searchedReport.vbgTypeLabel}
                     </h3>
-                    <p className="text-[11px] text-slate-400 mt-0.5">
+                    <p className="text-[11px] text-slate-500 mt-0.5">
                       Commune : {searchedReport.commune} • Signalé le {new Date(searchedReport.createdAt).toLocaleDateString('fr-FR')}
                     </p>
                   </div>
 
                   {searchedReport.assignedAgent && (
-                    <div className="p-2.5 bg-slate-950 rounded-xl border border-slate-800">
-                      <span className="block text-[9px] text-slate-400 uppercase font-bold">Conseillère dédiée</span>
-                      <span className="text-xs font-bold text-teal-300">{searchedReport.assignedAgent}</span>
+                    <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-200">
+                      <span className="block text-[9px] text-slate-500 uppercase font-bold">Conseillère dédiée</span>
+                      <span className="text-xs font-bold text-teal-700">{searchedReport.assignedAgent}</span>
                     </div>
                   )}
                 </div>
 
                 {/* Play recorded voice if present */}
                 {searchedReport.audioRecording && (
-                  <div className="p-3 bg-slate-950 rounded-xl border border-rose-500/20 space-y-1">
-                    <span className="text-[10px] font-bold text-rose-400 flex items-center gap-1">
+                  <div className="p-3 bg-slate-50 rounded-xl border border-rose-200 space-y-1">
+                    <span className="text-[10px] font-bold text-rose-600 flex items-center gap-1">
                       <Volume2 className="w-3.5 h-3.5" />
                       Enregistrement Vocal Déposé
                     </span>
@@ -1003,27 +1003,27 @@ export const VbgReportView: React.FC = () => {
 
                 {/* Timeline des notes d'avancement */}
                 <div className="space-y-3">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
-                    <Clock className="w-3.5 h-3.5 text-teal-400" />
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                    <Clock className="w-3.5 h-3.5 text-teal-600" />
                     <span>Échanges & Avancement du dossier</span>
                   </h4>
 
                   <div className="space-y-2.5 pl-2">
                     {searchedReport.notes?.filter((n: any) => n.isPublicForReporter).map((note: any, idx: number) => (
-                      <div key={note.id || idx} className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs space-y-1">
-                        <div className="flex items-center justify-between text-slate-400 text-[10px]">
-                          <span className="font-bold text-teal-400">{note.author} ({note.role})</span>
+                      <div key={note.id || idx} className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-1">
+                        <div className="flex items-center justify-between text-slate-500 text-[10px]">
+                          <span className="font-bold text-teal-700">{note.author} ({note.role})</span>
                           <span>{note.date}</span>
                         </div>
-                        <p className="text-slate-200 leading-relaxed">{note.text}</p>
+                        <p className="text-slate-800 leading-relaxed">{note.text}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Form de complément d'informations */}
-                <form onSubmit={handleAddTrackingNote} className="pt-4 border-t border-slate-800 space-y-2.5">
-                  <label className="block text-xs font-bold text-slate-300">
+                <form onSubmit={handleAddTrackingNote} className="pt-4 border-t border-slate-200 space-y-2.5">
+                  <label className="block text-xs font-bold text-slate-700">
                     Écrire un message ou un complément d'information à notre équipe :
                   </label>
                   <div className="flex items-center gap-2">
@@ -1032,7 +1032,7 @@ export const VbgReportView: React.FC = () => {
                       value={trackingNoteText}
                       onChange={e => setTrackingNoteText(e.target.value)}
                       placeholder="Tapez votre message ici..."
-                      className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500"
+                      className="flex-1 bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-teal-500"
                     />
                     <button
                       type="submit"
@@ -1044,8 +1044,8 @@ export const VbgReportView: React.FC = () => {
                   </div>
 
                   {noteSuccessMsg && (
-                    <p className="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <p className="text-[10px] text-emerald-600 font-bold flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                       <span>Message envoyé avec succès.</span>
                     </p>
                   )}
