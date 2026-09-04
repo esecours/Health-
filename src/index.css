@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hd-darkgreen: #144D32;
+  --color-hd-green: #3EA474;
+  --color-hd-lightgreen: #ECFDF5;
+  --color-hd-gold: #F5C84F;
+  --color-hd-gold-dark: #8A5C05;
+  --color-hd-gold-light: #FEF8E7;
+
+  /* Align teal with HEALTHDEV brand greens */
+  --color-teal-50: #ECFDF5;
+  --color-teal-100: #D1FAE5;
+  --color-teal-200: #A7F3D0;
+  --color-teal-300: #6EE7B7;
+  --color-teal-400: #42A274;
+  --color-teal-500: #3EA474;
+  --color-teal-600: #144D32;
+  --color-teal-700: #0f3d27;
+  --color-teal-800: #0b2d1d;
+  --color-teal-900: #071f14;
+  --color-teal-950: #04120c;
+}
+
+:root {
+  --hd-green-dark: #144D32;
+  --hd-green: #3EA474;
+  --hd-green-vibrant: #42A274;
+  --hd-green-light: #ECFDF5;
+  --hd-gold: #F5C84F;
+  --hd-gold-hover: #E5B537;
+  --hd-gold-dark: #8A5C05;
+  --hd-gold-light: #FEF8E7;
+  --hd-dark: #0A0F09;
+}
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
