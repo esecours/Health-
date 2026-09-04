@@ -233,17 +233,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <ShieldAlert className="w-4 h-4 text-rose-200 animate-pulse" />
               <span>Dénoncer une violence (VBG)</span>
             </button>
-
-            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center">
-              <div className="flex items-center gap-2 bg-rose-50 border border-rose-100 px-4 py-2 rounded-xl">
-                <span className="text-[10px] uppercase font-extrabold text-rose-800">SOS LIGNE VBG :</span>
-                <strong className="text-rose-700 font-black text-sm">138</strong>
-              </div>
-              <div className="flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-2 rounded-xl">
-                <span className="text-[10px] uppercase font-extrabold text-slate-500">PROTECTION ENFANTS :</span>
-                <strong className="text-slate-700 font-black text-sm">160</strong>
-              </div>
-            </div>
           </div>
         </div>
       </section>
