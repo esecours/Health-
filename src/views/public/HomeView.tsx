@@ -207,115 +207,41 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <div className="absolute top-0 right-0 w-80 h-80 bg-rose-200/20 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-100/20 rounded-full blur-2xl pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left side: Information, guarantees, call-to-action */}
-            <div className="lg:col-span-7 space-y-6">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 bg-rose-50 text-rose-700 font-extrabold text-[11px] uppercase tracking-widest rounded-full border border-rose-200/70">
-                <ShieldAlert className="w-3.5 h-3.5 text-rose-600 animate-pulse" />
-                <span>Protection Confidentielle, Anonyme & Sécurisée</span>
-              </span>
+        <div className="max-w-4xl mx-auto px-4 sm:px-8 relative z-10 text-center space-y-6">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 bg-rose-50 text-rose-700 font-extrabold text-[11px] uppercase tracking-widest rounded-full border border-rose-200/70 mx-auto">
+            <ShieldAlert className="w-3.5 h-3.5 text-rose-600 animate-pulse" />
+            <span>Protection Confidentielle, Anonyme & Sécurisée</span>
+          </span>
 
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-display leading-tight">
-                Zéro tolérance pour les <span className="text-rose-600">Violences Basées sur le Genre</span> au Bénin
-              </h2>
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-display leading-tight">
+            Zéro tolérance pour les <span className="text-rose-600">Violences Basées sur le Genre</span> au Bénin
+          </h2>
 
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Parce que briser le silence sauve des vies, la cellule d'écoute et de prise en charge de <strong>HEALTHDEV ONG</strong> met à votre disposition ce portail sécurisé de signalement. Victime ou témoin, dénoncez l'inacceptable pour déclencher un accompagnement médical, psychologique, juridique ou une mise en abri d'urgence.
-              </p>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+            Parce que briser le silence sauve des vies, la cellule d'écoute et de prise en charge de <strong>HEALTHDEV ONG</strong> met à votre disposition ce portail sécurisé de signalement. Victime ou témoin, dénoncez l'inacceptable pour déclencher un accompagnement médical, psychologique, juridique ou une mise en abri d'urgence.
+          </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 bg-white rounded-2xl border border-rose-100 shadow-xs space-y-1">
-                  <h4 className="text-sm font-black text-slate-900 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-rose-600"></span>
-                    Mode Anonyme garanti
-                  </h4>
-                  <p className="text-xs text-slate-500 leading-normal">
-                    Aucune identité requise. Soumettez les faits en toute sécurité et recevez un code unique de suivi.
-                  </p>
-                </div>
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <button
+              onClick={() => {
+                setCurrentView('vbg');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="px-8 py-4 bg-rose-600 hover:bg-rose-700 text-white font-black text-sm rounded-xl shadow-lg shadow-rose-950/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer uppercase tracking-wider"
+            >
+              <ShieldAlert className="w-4 h-4 text-rose-200 animate-pulse" />
+              <span>Dénoncer une violence (VBG)</span>
+            </button>
 
-                <div className="p-4 bg-white rounded-2xl border border-rose-100 shadow-xs space-y-1">
-                  <h4 className="text-sm font-black text-slate-900 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-rose-600"></span>
-                    Mode Identifié assisté
-                  </h4>
-                  <p className="text-xs text-slate-500 leading-normal">
-                    Laissez vos coordonnées pour être contacté(e) et accompagné(e) personnellement par nos assistants sociaux.
-                  </p>
-                </div>
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center">
+              <div className="flex items-center gap-2 bg-rose-50 border border-rose-100 px-4 py-2 rounded-xl">
+                <span className="text-[10px] uppercase font-extrabold text-rose-800">SOS LIGNE VBG :</span>
+                <strong className="text-rose-700 font-black text-sm">138</strong>
               </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-                <button
-                  onClick={() => {
-                    setCurrentView('vbg');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="px-8 py-4 bg-rose-600 hover:bg-rose-700 text-white font-black text-sm rounded-xl shadow-lg shadow-rose-950/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer uppercase tracking-wider"
-                >
-                  <ShieldAlert className="w-4 h-4 text-rose-200 animate-pulse" />
-                  <span>Dénoncer une violence (VBG)</span>
-                </button>
-
-                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center sm:justify-start">
-                  <div className="flex items-center gap-2 bg-rose-50 border border-rose-100 px-4 py-2 rounded-xl">
-                    <span className="text-[10px] uppercase font-extrabold text-rose-800">SOS LIGNE VBG :</span>
-                    <strong className="text-rose-700 font-black text-sm">138</strong>
-                  </div>
-                  <div className="flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-2 rounded-xl">
-                    <span className="text-[10px] uppercase font-extrabold text-slate-500">PROTECTION ENFANTS :</span>
-                    <strong className="text-slate-700 font-black text-sm">160</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right side: Informative graphic container */}
-            <div className="lg:col-span-5">
-              <div className="relative p-6 sm:p-8 bg-white border border-rose-100 rounded-3xl shadow-xl space-y-6">
-                <h3 className="font-black text-slate-900 text-lg sm:text-xl border-b border-rose-100 pb-3">
-                  Suivi de mon signalement
-                </h3>
-
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Lorsque vous effectuez un signalement, notre système génère un code sécurisé unique (ex : <code className="bg-rose-50 text-rose-600 px-1.5 py-0.5 rounded-md font-bold text-xs">VBG-2026-8472</code>). 
-                  Il vous permet d'échanger avec nos agents administratifs et d'être tenu informé de la prise en charge sans jamais dévoiler votre identité.
-                </p>
-
-                <div className="bg-rose-50/50 p-4 rounded-2xl border border-rose-100/50 space-y-2.5 text-xs">
-                  <div className="flex justify-between items-center text-[10px] text-rose-700 font-extrabold uppercase">
-                    <span>État actuel de la cellule :</span>
-                    <span className="flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-teal-500 animate-ping"></span>
-                      Active (24h/24)
-                    </span>
-                  </div>
-                  <div className="space-y-1 text-slate-600">
-                    <p className="flex justify-between">
-                      <span>Dossiers résolus ce mois-ci :</span>
-                      <strong className="font-bold text-slate-900">47 cas</strong>
-                    </p>
-                    <p className="flex justify-between">
-                      <span>Délai moyen de première réponse :</span>
-                      <strong className="font-bold text-slate-900">&lt; 1 heure</strong>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-2 text-center">
-                  <button
-                    onClick={() => {
-                      setCurrentView('vbg');
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="text-xs font-black text-rose-600 hover:text-rose-700 flex items-center justify-center gap-1 w-full"
-                  >
-                    <span>Consulter un signalement existant</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
+              <div className="flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-2 rounded-xl">
+                <span className="text-[10px] uppercase font-extrabold text-slate-500">PROTECTION ENFANTS :</span>
+                <strong className="text-slate-700 font-black text-sm">160</strong>
               </div>
             </div>
           </div>
