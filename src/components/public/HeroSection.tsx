@@ -17,7 +17,8 @@ import {
   ChevronLeft,
   MapPin,
   Flame,
-  ImageIcon
+  ImageIcon,
+  ShieldAlert
 } from 'lucide-react';
 
 interface HeroSectionProps {
@@ -98,6 +99,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal, on
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
+            <button
+              onClick={() => {
+                setCurrentView('vbg');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-rose-600 hover:bg-rose-700 text-white font-black text-xs sm:text-sm rounded-xl shadow-xl shadow-rose-900/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
+            >
+              <ShieldAlert className="w-4 h-4 text-rose-200 animate-pulse shrink-0" />
+              <span>Dénonciation VBG (SOS)</span>
+            </button>
+
             <button
               onClick={() => {
                 setCurrentView('volunteer-register');

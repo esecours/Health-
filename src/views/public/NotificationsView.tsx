@@ -118,7 +118,7 @@ export const NotificationsView: React.FC = () => {
     }
 
     if (item.link) {
-      if (['finances', 'volunteers', 'projects', 'activities', 'news', 'overview', 'announcements'].includes(item.link)) {
+      if (['finances', 'volunteers', 'projects', 'activities', 'news', 'overview', 'announcements', 'vbg'].includes(item.link)) {
         if (setActiveDashboardTab) {
           setActiveDashboardTab(item.link as any);
         }

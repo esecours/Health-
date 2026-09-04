@@ -125,7 +125,7 @@ export const NotificationsCenter: React.FC<NotificationsCenterProps> = ({ classN
     }
 
     if (item.link) {
-      if (['finances', 'volunteers', 'projects', 'activities', 'news', 'overview'].includes(item.link)) {
+      if (['finances', 'volunteers', 'projects', 'activities', 'news', 'overview', 'vbg'].includes(item.link)) {
         if (setActiveDashboardTab) {
           setActiveDashboardTab(item.link as any);
         }
