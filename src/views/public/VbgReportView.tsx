@@ -258,29 +258,7 @@ export const VbgReportView: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 shrink-0">
-            <a
-              href="tel:138"
-              className="px-3 py-2 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-black flex items-center gap-1.5 transition-all shadow-lg shadow-rose-950/50 cursor-pointer"
-            >
-              <PhoneCall className="w-4 h-4 text-rose-200" />
-              <span>N° Vert 138</span>
-            </a>
-            <a
-              href="tel:160"
-              className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 rounded-xl text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer"
-            >
-              <PhoneCall className="w-4 h-4" />
-              <span>160 (Protection)</span>
-            </a>
-            <a
-              href="tel:+2290192431595"
-              className="px-3 py-2 bg-teal-600 hover:bg-teal-500 text-white rounded-xl text-xs font-black flex items-center gap-1.5 transition-all shadow-lg shadow-teal-950/50 cursor-pointer"
-            >
-              <ShieldCheck className="w-4 h-4" />
-              <span>HEALTHDEV (+229)</span>
-            </a>
-          </div>
+          {/* Buttons removed according to user selection */}
         </div>
       </div>
 
