@@ -11,10 +11,12 @@ import { PartnersManager } from '../../components/admin/PartnersManager';
 import { CarouselPartnersSection } from '../../components/admin/CarouselPartnersSection';
 import { ZonesManager } from '../../components/admin/ZonesManager';
 import { AnnouncementsManager } from '../../components/admin/AnnouncementsManager';
+import { VbgManager } from '../../components/admin/VbgManager';
 import { NotificationsCenter } from '../../components/common/NotificationsCenter';
 import { EditProfileModal } from '../../components/profile/EditProfileModal';
 import { UserBadgeModal } from '../../components/profile/UserBadgeModal';
 import { 
+  ShieldAlert,
   LayoutDashboard, 
   FolderGit2, 
   Calendar, 
@@ -86,7 +88,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   } = useApp();
 
   const [activeTab, setActiveTabState] = useState<
-    'overview' | 'projects' | 'activities' | 'volunteers' | 'finances' | 'me' | 'news' | 'documents' | 'partners' | 'zones' | 'announcements' | 'maintenance' | 'my_volunteer' | 'my_profile'
+    'overview' | 'projects' | 'activities' | 'volunteers' | 'finances' | 'me' | 'news' | 'documents' | 'partners' | 'zones' | 'announcements' | 'vbg' | 'maintenance' | 'my_volunteer' | 'my_profile'
   >(() => {
     if (activeDashboardTab && activeDashboardTab !== 'overview') {
       return activeDashboardTab as any;
@@ -412,6 +414,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   <span>Communiqués</span>
                 </button>
               )}
+
+              <button
+                onClick={() => setActiveTab('vbg')}
+                className={`px-4 py-2.5 rounded-xl transition-all shrink-0 flex items-center gap-2 cursor-pointer ${
+                  activeTab === 'vbg'
+                    ? 'bg-rose-700 text-white shadow-xs'
+                    : 'bg-rose-50 text-rose-900 hover:bg-rose-100 border border-rose-200'
+                }`}
+              >
+                <ShieldAlert className="w-4 h-4 text-rose-600" />
+                <span>Signalements VBG</span>
+              </button>
 
               {(currentUser?.role === 'super_admin' || currentUser?.role === 'admin') && (
                 <button
@@ -839,6 +853,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         {activeTab === 'announcements' && canAccessSection('announcements') && (
           <div className="animate-in fade-in duration-150">
             <AnnouncementsManager />
+          </div>
+        )}
+
+        {/* TAB VBG: VBG MANAGER */}
+        {activeTab === 'vbg' && (
+          <div className="animate-in fade-in duration-150">
+            <VbgManager />
           </div>
         )}
 

@@ -173,6 +173,14 @@ export const TopLiveBar: React.FC<TopLiveBarProps> = () => {
 
           {/* Right: Registration Tag & Region */}
           <div className="hidden md:flex items-center gap-4 shrink-0 text-[11px]">
+            <button
+              onClick={() => setCurrentView('vbg')}
+              className="flex items-center gap-1.5 text-rose-400 font-bold hover:text-rose-300 transition-colors cursor-pointer bg-rose-950/60 px-2.5 py-1 rounded-lg border border-rose-800/50"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-rose-400" />
+              <span>Dénonciation VBG • SOS 138 / 160</span>
+            </button>
+
             <div className="flex items-center gap-1.5 text-slate-400">
               <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
               <span>Enreg. MISP : <strong>{NGO_INFO.registrationNumber}</strong></span>

@@ -380,3 +380,44 @@ export interface Announcement {
   createdAt: string;
 }
 
+export type VbgUrgencyLevel = 'low' | 'medium' | 'high' | 'critical';
+
+export type VbgStatus = 'submitted' | 'under_review' | 'assigned' | 'in_progress' | 'resolved' | 'closed';
+
+export interface VbgReportNote {
+  id: string;
+  author: string;
+  role: string;
+  date: string;
+  text: string;
+  isPublicForReporter: boolean;
+}
+
+export interface VbgReport {
+  id: string;
+  trackingCode: string; // ex: VBG-2026-9812
+  isAnonymous: boolean;
+  reporterName?: string;
+  reporterPhone?: string;
+  reporterEmail?: string;
+  reporterRelation: 'victim' | 'witness' | 'relative' | 'health_worker' | 'other';
+  victimAgeGroup?: 'minor' | 'young_adult' | 'adult' | 'elderly';
+  victimGender: 'F' | 'M' | 'Autre';
+  vbgType: 'physical' | 'sexual' | 'psychological' | 'economic' | 'forced_marriage' | 'mutilation' | 'harassment' | 'cyber_harassment' | 'other';
+  vbgTypeLabel: string;
+  urgencyLevel: VbgUrgencyLevel;
+  department: string;
+  commune: string;
+  locationDetails?: string;
+  incidentDate: string;
+  description: string;
+  perpetratorKnown?: boolean;
+  perpetratorRelation?: string;
+  supportRequested: string[]; // ex: ['Assistance Médicale', 'Prise en charge Psychologique', 'Accompagnement Juridique', 'Protection & Hébergement']
+  status: VbgStatus;
+  assignedAgent?: string;
+  notes?: VbgReportNote[];
+  createdAt: string;
+  updatedAt: string;
+}
+

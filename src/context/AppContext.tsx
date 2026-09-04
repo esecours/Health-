@@ -19,7 +19,10 @@ import {
   AuditLog,
   UserRole,
   Partner,
-  Announcement
+  Announcement,
+  VbgReport,
+  VbgStatus,
+  VbgReportNote
 } from '../types';
 import {
   INITIAL_USERS,
@@ -38,7 +41,8 @@ import {
   INITIAL_MESSAGES,
   INITIAL_AUDIT_LOGS,
   INITIAL_PARTNERS,
-  INITIAL_ANNOUNCEMENTS
+  INITIAL_ANNOUNCEMENTS,
+  INITIAL_VBG_REPORTS
 } from '../data/initialData';
 
 
@@ -70,6 +74,13 @@ interface AppContextType {
   notifications: NotificationItem[];
   messages: ChatMessage[];
   auditLogs: AuditLog[];
+  vbgReports: VbgReport[];
+
+  // Actions - VBG (Violence Basée sur le Genre)
+  addVbgReport: (report: Omit<VbgReport, 'id' | 'trackingCode' | 'createdAt' | 'updatedAt' | 'status' | 'notes'>) => { trackingCode: string; reportId: string };
+  updateVbgReportStatus: (id: string, status: VbgStatus, assignedAgent?: string, noteText?: string, isPublicNote?: boolean) => void;
+  addVbgReportNote: (id: string, noteText: string, isPublicNote?: boolean) => void;
+  getVbgReportByCode: (trackingCode: string) => VbgReport | undefined;
 
   // Navigation & View Controls
   currentView: string;
@@ -202,6 +213,7 @@ const STORAGE_KEYS = {
   MESSAGES: 'healthdev_messages_official_v14',
   AUDIT_LOGS: 'healthdev_audit_logs_official_v14',
   ANNOUNCEMENTS: 'healthdev_announcements_official_v14',
+  VBG_REPORTS: 'healthdev_vbg_reports_official_v14',
   MAINTENANCE_MODE: 'healthdev_maintenance_mode_v14',
   CURRENT_USER_ID: 'healthdev_current_user_id_v14',
   CURRENT_VIEW: 'healthdev_current_view_v14'
@@ -283,6 +295,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [messages, setMessages] = useState<ChatMessage[]>(() => loadState(STORAGE_KEYS.MESSAGES, INITIAL_MESSAGES) || []);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>(() => loadState(STORAGE_KEYS.AUDIT_LOGS, INITIAL_AUDIT_LOGS) || []);
   const [announcements, setAnnouncements] = useState<Announcement[]>(() => loadState(STORAGE_KEYS.ANNOUNCEMENTS, INITIAL_ANNOUNCEMENTS) || []);
+  const [vbgReports, setVbgReports] = useState<VbgReport[]>(() => loadState(STORAGE_KEYS.VBG_REPORTS, INITIAL_VBG_REPORTS) || []);
   const [isMaintenanceMode, setIsMaintenanceMode] = useState<boolean>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.MAINTENANCE_MODE);
@@ -291,6 +304,120 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       return false;
     }
   });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.VBG_REPORTS, JSON.stringify(vbgReports));
+  }, [vbgReports]);
+
+  const addVbgReport = (
+    reportData: Omit<VbgReport, 'id' | 'trackingCode' | 'createdAt' | 'updatedAt' | 'status' | 'notes'>
+  ) => {
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    const trackingCode = `VBG-2026-${randomNum}`;
+    const reportId = `vbg-rep-${Date.now()}`;
+    const newReport: VbgReport = {
+      ...reportData,
+      id: reportId,
+      trackingCode,
+      status: 'submitted',
+      notes: [
+        {
+          id: `note-${Date.now()}`,
+          author: 'Système VBG HEALTHDEV',
+          role: 'Automatique',
+          date: new Date().toLocaleString('fr-FR'),
+          text: 'Signalement VBG enregistré avec succès. Notre équipe de protection d\'urgence analyse votre dossier en toute confidentialité.',
+          isPublicForReporter: true
+        }
+      ],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    setVbgReports(prev => [newReport, ...prev]);
+
+    // Send admin notification
+    const newNotif: NotificationItem = {
+      id: `notif-vbg-${Date.now()}`,
+      targetRole: 'admin',
+      title: `🚨 Nouveau Signalement VBG (${reportData.urgencyLevel === 'critical' ? 'DANGER IMMÉDIAT' : reportData.vbgTypeLabel})`,
+      message: `Un nouveau signalement ${reportData.isAnonymous ? 'Anonyme' : 'Identifié'} a été reçu pour la commune de ${reportData.commune} (${reportData.department}). Code de suivi: ${trackingCode}`,
+      type: 'system',
+      createdAt: new Date().toLocaleString('fr-FR'),
+      isRead: false,
+      link: 'vbg'
+    };
+    setNotifications(prev => [newNotif, ...prev]);
+
+    logAction('Dénonciation VBG', `Nouveau signalement enregistré (Code: ${trackingCode}, Mode: ${reportData.isAnonymous ? 'Anonyme' : 'Identifié'})`);
+
+    return { trackingCode, reportId };
+  };
+
+  const updateVbgReportStatus = (
+    id: string,
+    status: VbgStatus,
+    assignedAgent?: string,
+    noteText?: string,
+    isPublicNote: boolean = true
+  ) => {
+    setVbgReports(prev =>
+      prev.map(rep => {
+        if (rep.id !== id) return rep;
+        const updatedNotes = [...(rep.notes || [])];
+        if (noteText && noteText.trim()) {
+          updatedNotes.push({
+            id: `note-${Date.now()}`,
+            author: currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : 'Cellule VBG HEALTHDEV',
+            role: currentUser?.poste || 'HEALTHDEV ONG',
+            date: new Date().toLocaleString('fr-FR'),
+            text: noteText.trim(),
+            isPublicForReporter: isPublicNote
+          });
+        }
+        return {
+          ...rep,
+          status,
+          assignedAgent: assignedAgent || rep.assignedAgent,
+          notes: updatedNotes,
+          updatedAt: new Date().toISOString()
+        };
+      })
+    );
+    logAction('Mise à jour VBG', `Statut du signalement ${id} mis à jour vers "${status}"`);
+  };
+
+  const addVbgReportNote = (id: string, noteText: string, isPublicNote: boolean = true) => {
+    if (!noteText || !noteText.trim()) return;
+    setVbgReports(prev =>
+      prev.map(rep => {
+        if (rep.id !== id) return rep;
+        return {
+          ...rep,
+          notes: [
+            ...(rep.notes || []),
+            {
+              id: `note-${Date.now()}`,
+              author: currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : 'Déclarant / Témoin',
+              role: currentUser?.poste || 'Anonyme',
+              date: new Date().toLocaleString('fr-FR'),
+              text: noteText.trim(),
+              isPublicForReporter: isPublicNote
+            }
+          ],
+          updatedAt: new Date().toISOString()
+        };
+      })
+    );
+  };
+
+  const getVbgReportByCode = (trackingCode: string) => {
+    if (!trackingCode) return undefined;
+    const cleanCode = trackingCode.trim().toUpperCase();
+    return vbgReports.find(
+      r => r.trackingCode.toUpperCase() === cleanCode || r.id.toUpperCase() === cleanCode
+    );
+  };
 
   const setMaintenanceMode = (status: boolean) => {
     setIsMaintenanceMode(status);
@@ -1204,6 +1331,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         notifications,
         messages,
         auditLogs,
+        vbgReports,
+        addVbgReport,
+        updateVbgReportStatus,
+        addVbgReportNote,
+        getVbgReportByCode,
         currentView,
         setCurrentView,
         activeDashboardTab,

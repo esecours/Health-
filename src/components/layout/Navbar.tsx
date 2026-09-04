@@ -11,6 +11,7 @@ import {
   LayoutDashboard, 
   LogOut,
   Shield,
+  ShieldAlert,
   Sparkles,
   ArrowRight,
   Globe,
@@ -137,14 +138,23 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Right Action Buttons */}
-          <div className="hidden sm:flex items-center gap-2.5">
+          <div className="hidden sm:flex items-center gap-2">
+            {/* VBG Signalement Button */}
+            <button
+              onClick={() => handleNavClick('vbg')}
+              className="px-3 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-rose-900/20 hover:scale-[1.02] cursor-pointer"
+            >
+              <ShieldAlert className="w-4 h-4 text-rose-200 animate-pulse" />
+              <span>Dénonciation VBG</span>
+            </button>
+
             {/* Notifications Center Bell */}
             <NotificationsCenter />
 
             {/* Donate CTA Button (Green box with white text matching reference design) */}
             <button
               onClick={onOpenPaymentModal}
-              className="px-4 py-2.5 bg-[#144D32] hover:bg-[#0e3b26] text-white rounded-xl text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-[#144D32]/20 hover:scale-[1.02] cursor-pointer tracking-wider uppercase"
+              className="px-3.5 py-2 bg-[#144D32] hover:bg-[#0e3b26] text-white rounded-xl text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-[#144D32]/20 hover:scale-[1.02] cursor-pointer tracking-wider uppercase"
             >
               <Heart className="w-3.5 h-3.5 fill-[#F5C84F] text-[#F5C84F]" />
               <span>Faire un Don</span>
@@ -300,6 +310,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+            <button
+              onClick={() => handleNavClick('vbg')}
+              className="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-black text-xs flex items-center justify-center gap-2 shadow-md"
+            >
+              <ShieldAlert className="w-4 h-4 text-rose-200 animate-pulse" />
+              <span>Dénonciation VBG (Anonyme & Sécurisée)</span>
+            </button>
+
             <button
               onClick={() => {
                 onOpenPaymentModal();

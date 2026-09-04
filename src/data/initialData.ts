@@ -15,7 +15,8 @@ import {
   AuditLog,
   ActivityAttendance,
   Partner,
-  Announcement
+  Announcement,
+  VbgReport
 } from '../types';
 
 
@@ -2516,6 +2517,119 @@ export const INITIAL_MESSAGES: ChatMessage[] = [];
 export const INITIAL_AUDIT_LOGS: AuditLog[] = [];
 
 export const INITIAL_ANNOUNCEMENTS: Announcement[] = [];
+
+export const INITIAL_VBG_REPORTS: VbgReport[] = [
+  {
+    id: 'vbg-rep-101',
+    trackingCode: 'VBG-2026-1048',
+    isAnonymous: true,
+    reporterRelation: 'victim',
+    victimAgeGroup: 'young_adult',
+    victimGender: 'F',
+    vbgType: 'sexual',
+    vbgTypeLabel: 'Violences Sexuelles & Harcèlement',
+    urgencyLevel: 'high',
+    department: 'Borgou',
+    commune: 'Parakou',
+    locationDetails: 'Quartier Titirou, proche du marché',
+    incidentDate: '2026-09-01',
+    description: 'Harcèlement répété et agression verbale/physique dans le cadre professionnel informel. Besoin d\'accompagnement et de conseils juridiques sécurisés.',
+    perpetratorKnown: true,
+    perpetratorRelation: 'Employeur/Supérieur',
+    supportRequested: ['Assistance Médicale', 'Accompagnement Juridique', 'Soutien Psychologique'],
+    status: 'in_progress',
+    assignedAgent: 'Mme Rollande GNANGNI (Assistante Sociale VBG)',
+    notes: [
+      {
+        id: 'note-1',
+        author: 'Assistante Sociale VBG',
+        role: 'HEALTHDEV ONG',
+        date: '2026-09-02 10:15',
+        text: 'Dossier pris en charge. Prise de contact effectuée avec le centre de santé partenaire pour la prise en charge médicale et psychologique gratuite.',
+        isPublicForReporter: true
+      },
+      {
+        id: 'note-2',
+        author: 'Juriste Conseil',
+        role: 'HEALTHDEV ONG',
+        date: '2026-09-03 14:30',
+        text: 'Accompagnement juridique gratuit programmé pour constitution du dossier de protection.',
+        isPublicForReporter: true
+      }
+    ],
+    createdAt: '2026-09-01T14:20:00Z',
+    updatedAt: '2026-09-03T14:30:00Z'
+  },
+  {
+    id: 'vbg-rep-102',
+    trackingCode: 'VBG-2026-8912',
+    isAnonymous: false,
+    reporterName: 'Aïchatou BIO',
+    reporterPhone: '+229 97 12 34 56',
+    reporterEmail: 'aichatou.bio@example.com',
+    reporterRelation: 'relative',
+    victimAgeGroup: 'minor',
+    victimGender: 'F',
+    vbgType: 'forced_marriage',
+    vbgTypeLabel: 'Mariage Précoce & Forcé',
+    urgencyLevel: 'critical',
+    department: 'Alibori',
+    commune: 'Kandi',
+    locationDetails: 'Village de Sonsoro',
+    incidentDate: '2026-09-03',
+    description: 'Tentative de mariage forcé imminente d\'une jeune fille mineure de 15 ans. Intervention d\'urgence sollicitée pour médiation et protection juridique.',
+    perpetratorKnown: true,
+    perpetratorRelation: 'Membre de famille',
+    supportRequested: ['Protection & Hébergement', 'Accompagnement Juridique', 'Médiation Sociale'],
+    status: 'under_review',
+    assignedAgent: 'M. Roland (Coordinateur Protection Enfance)',
+    notes: [
+      {
+        id: 'note-3',
+        author: 'Protection Enfance',
+        role: 'HEALTHDEV ONG',
+        date: '2026-09-03 18:00',
+        text: 'Alertes transmises au Centre de Promotion Sociale (CPS) de Kandi et à la Brigade de Protection des Mineurs. Mission de terrain en préparation.',
+        isPublicForReporter: true
+      }
+    ],
+    createdAt: '2026-09-03T16:10:00Z',
+    updatedAt: '2026-09-03T18:00:00Z'
+  },
+  {
+    id: 'vbg-rep-103',
+    trackingCode: 'VBG-2026-4421',
+    isAnonymous: true,
+    reporterRelation: 'witness',
+    victimAgeGroup: 'adult',
+    victimGender: 'F',
+    vbgType: 'physical',
+    vbgTypeLabel: 'Violences Physiques & Conjugales',
+    urgencyLevel: 'medium',
+    department: 'Littoral',
+    commune: 'Cotonou',
+    locationDetails: 'Sainte-Rita, 7e Arrondissement',
+    incidentDate: '2026-08-28',
+    description: 'Violences physiques et agressions récurrentes subies par une résidente du quartier. Demande d\'orientation vers un refuge et appui psychologique.',
+    perpetratorKnown: true,
+    perpetratorRelation: 'Conjoint/Ex-conjoint',
+    supportRequested: ['Écoute & Conseils', 'Accompagnement Juridique'],
+    status: 'resolved',
+    assignedAgent: 'Mme AHO Régina',
+    notes: [
+      {
+        id: 'note-4',
+        author: 'Présidente CA',
+        role: 'HEALTHDEV ONG',
+        date: '2026-08-29 09:00',
+        text: 'Prise en charge effectuée avec orientation vers le Guichet Unique VBG de Cotonou et suivi psychologique individuel assuré avec succès.',
+        isPublicForReporter: true
+      }
+    ],
+    createdAt: '2026-08-28T20:45:00Z',
+    updatedAt: '2026-08-30T11:00:00Z'
+  }
+];
 
 
 

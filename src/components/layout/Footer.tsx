@@ -163,6 +163,12 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
+                <button onClick={() => setCurrentView('vbg')} className="hover:text-rose-300 transition-colors flex items-center gap-1 text-rose-400 font-bold">
+                  <span>Dénonciation VBG (Anonyme)</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </button>
+              </li>
+              <li>
                 <button onClick={() => setCurrentView('volunteer-register')} className="hover:text-emerald-300 transition-colors flex items-center gap-1 text-[#F5C84F] font-semibold">
                   <span>Devenir Bénévole</span>
                   <ArrowUpRight className="w-3 h-3" />

@@ -23,6 +23,7 @@ import { ResourcesView } from './views/public/ResourcesView';
 import { ContactView } from './views/public/ContactView';
 import { LoginView } from './views/public/LoginView';
 import { NotificationsView } from './views/public/NotificationsView';
+import { VbgReportView } from './views/public/VbgReportView';
 
 // Private Views
 import { DashboardView } from './views/private/DashboardView';
@@ -136,6 +137,10 @@ const MainAppContent: React.FC = () => {
         return <LoginView />;
       case 'notifications':
         return <NotificationsView />;
+      case 'vbg':
+      case 'vbg-report':
+      case 'vbg-denonciation':
+        return <VbgReportView />;
       case 'dashboard':
         return (
           <DashboardView
