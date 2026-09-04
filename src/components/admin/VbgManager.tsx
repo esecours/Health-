@@ -20,7 +20,9 @@ import {
   ShieldCheck,
   Building2,
   X,
-  MessageSquare
+  MessageSquare,
+  Volume2,
+  Mic
 } from 'lucide-react';
 
 export const VbgManager: React.FC = () => {
@@ -364,10 +366,37 @@ export const VbgManager: React.FC = () => {
                 </p>
               </div>
 
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1 sm:col-span-2">
-                <span className="text-[10px] font-bold text-slate-400 uppercase">Description des faits</span>
-                <p className="text-slate-200 leading-relaxed font-sans mt-1">{selectedReport.description}</p>
-              </div>
+              {selectedReport.wantFeedback && (
+                <div className="p-3 bg-emerald-950/30 rounded-xl border border-emerald-500/30 space-y-1 sm:col-span-2">
+                  <span className="text-[10px] font-bold text-emerald-400 uppercase flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                    Retour de Dénonciation Souhaité
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+                    <p className="text-[11px] text-slate-200">
+                      <strong>Adresse de contact :</strong> {selectedReport.reporterAddress || 'Non spécifiée'}
+                    </p>
+                    <p className="text-[11px] text-slate-200">
+                      <strong>Téléphone / WhatsApp :</strong> {selectedReport.reporterPhone || 'Non renseigné'}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {selectedReport.audioRecording ? (
+                <div className="p-3 bg-rose-950/20 rounded-xl border border-rose-500/30 space-y-2 sm:col-span-2">
+                  <span className="text-[10px] font-bold text-rose-400 uppercase flex items-center gap-1.5">
+                    <Volume2 className="w-3.5 h-3.5 animate-pulse" />
+                    Dénonciation par Enregistrement Vocal
+                  </span>
+                  <audio src={selectedReport.audioRecording} controls className="w-full h-10 mt-1 focus:outline-none" />
+                </div>
+              ) : (
+                <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1 sm:col-span-2">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase">Description écrite des faits</span>
+                  <p className="text-slate-200 leading-relaxed font-sans mt-1">{selectedReport.description || "Aucune description écrite fournie."}</p>
+                </div>
+              )}
 
               <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1 sm:col-span-2">
                 <span className="text-[10px] font-bold text-slate-400 uppercase">Prise en charge & Appuis requis</span>

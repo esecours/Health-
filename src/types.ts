@@ -417,6 +417,9 @@ export interface VbgReport {
   status: VbgStatus;
   assignedAgent?: string;
   notes?: VbgReportNote[];
+  audioRecording?: string; // base64 voice recording
+  wantFeedback?: boolean;
+  reporterAddress?: string;
   createdAt: string;
   updatedAt: string;
 }
