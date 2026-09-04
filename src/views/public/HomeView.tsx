@@ -70,6 +70,41 @@ export const HomeView: React.FC<HomeViewProps> = ({
       {/* 2. About & Mission Section with Overlapping Collage & Dual Metric Pill */}
       <AboutMissionSection onOpenPaymentModal={onOpenPaymentModal} />
 
+      {/* 7.5. Dedicated Gender-Based Violence (VBG) Prevention & Reporting Section */}
+      <section className="py-16 sm:py-24 bg-[#FFF8F8] border-y border-rose-100 overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-rose-200/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-100/20 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-8 relative z-10 text-center space-y-6">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 bg-rose-50 text-rose-700 font-extrabold text-[11px] uppercase tracking-widest rounded-full border border-rose-200/70 mx-auto">
+            <ShieldAlert className="w-3.5 h-3.5 text-rose-600 animate-pulse" />
+            <span>Protection Confidentielle, Anonyme & Sécurisée</span>
+          </span>
+
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-display leading-tight">
+            Zéro tolérance pour les <span className="text-rose-600">Violences Basées sur le Genre</span> au Bénin
+          </h2>
+
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+            Parce que briser le silence sauve des vies, la cellule d'écoute et de prise en charge de <strong>HEALTHDEV ONG</strong> met à votre disposition ce portail sécurisé de signalement. Victime ou témoin, dénoncez l'inacceptable pour déclencher un accompagnement médical, psychologique, juridique ou une mise en abri d'urgence.
+          </p>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <button
+              onClick={() => {
+                setCurrentView('vbg');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="px-8 py-4 bg-rose-600 hover:bg-rose-700 text-white font-black text-sm rounded-xl shadow-lg shadow-rose-950/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer uppercase tracking-wider"
+            >
+              <ShieldAlert className="w-4 h-4 text-rose-200 animate-pulse" />
+              <span>Dénoncer une violence (VBG)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Activités Publiées du Tableau de Bord (En haut de la section "Nos Piliers Stratégiques") */}
       <HomeActivitiesShowcase />
 
@@ -201,41 +236,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
       {/* 7. Benin Map & Territorial Hotspots */}
       <BeninMapSection />
-
-      {/* 7.5. Dedicated Gender-Based Violence (VBG) Prevention & Reporting Section */}
-      <section className="py-16 sm:py-24 bg-[#FFF8F8] border-y border-rose-100 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-rose-200/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-100/20 rounded-full blur-2xl pointer-events-none"></div>
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-8 relative z-10 text-center space-y-6">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 bg-rose-50 text-rose-700 font-extrabold text-[11px] uppercase tracking-widest rounded-full border border-rose-200/70 mx-auto">
-            <ShieldAlert className="w-3.5 h-3.5 text-rose-600 animate-pulse" />
-            <span>Protection Confidentielle, Anonyme & Sécurisée</span>
-          </span>
-
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-display leading-tight">
-            Zéro tolérance pour les <span className="text-rose-600">Violences Basées sur le Genre</span> au Bénin
-          </h2>
-
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-            Parce que briser le silence sauve des vies, la cellule d'écoute et de prise en charge de <strong>HEALTHDEV ONG</strong> met à votre disposition ce portail sécurisé de signalement. Victime ou témoin, dénoncez l'inacceptable pour déclencher un accompagnement médical, psychologique, juridique ou une mise en abri d'urgence.
-          </p>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <button
-              onClick={() => {
-                setCurrentView('vbg');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="px-8 py-4 bg-rose-600 hover:bg-rose-700 text-white font-black text-sm rounded-xl shadow-lg shadow-rose-950/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer uppercase tracking-wider"
-            >
-              <ShieldAlert className="w-4 h-4 text-rose-200 animate-pulse" />
-              <span>Dénoncer une violence (VBG)</span>
-            </button>
-          </div>
-        </div>
-      </section>
 
       {/* 8. Featured Institutional & Technical Partners */}
       <PartnersSection />
