@@ -3,7 +3,6 @@ import { AppProvider, useApp } from './context/AppContext';
 import { Navbar } from './components/layout/Navbar';
 import { TopLiveBar } from './components/layout/TopLiveBar';
 import { Footer } from './components/layout/Footer';
-import { RoleSwitcherModal } from './components/common/RoleSwitcherModal';
 import { PaymentModal } from './components/common/PaymentModal';
 import { SpotlightModal } from './components/common/SpotlightModal';
 import { AlertCircle } from 'lucide-react';
@@ -30,7 +29,6 @@ import { DashboardView } from './views/private/DashboardView';
 
 const MainAppContent: React.FC = () => {
   const { currentView, isMaintenanceMode, currentUser, setCurrentView } = useApp();
-  const [roleSwitcherOpen, setRoleSwitcherOpen] = useState(false);
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
   const [spotlightOpen, setSpotlightOpen] = useState(false);
   const [activePaymentAmount, setActivePaymentAmount] = useState<number>(15000);
@@ -39,6 +37,29 @@ const MainAppContent: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentView]);
+
+  // Listen to path or hash containing "democonnexion" to switch view to "democonnexion"
+  useEffect(() => {
+    const handleUrlRoute = () => {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      if (
+        path === '/democonnexion' || 
+        path.endsWith('/democonnexion') || 
+        hash === '#democonnexion' || 
+        hash.includes('democonnexion')
+      ) {
+        setCurrentView('democonnexion');
+      }
+    };
+    handleUrlRoute();
+    window.addEventListener('popstate', handleUrlRoute);
+    window.addEventListener('hashchange', handleUrlRoute);
+    return () => {
+      window.removeEventListener('popstate', handleUrlRoute);
+      window.removeEventListener('hashchange', handleUrlRoute);
+    };
+  }, [setCurrentView]);
 
   // Global keyboard shortcut: Ctrl+K / Cmd+K for Spotlight
   useEffect(() => {
@@ -72,26 +93,15 @@ const MainAppContent: React.FC = () => {
               HEALTHDEV ONG procède actuellement à une maintenance programmée de sa plateforme. Nous serons de retour très prochainement.
             </p>
           </div>
-          <div className="pt-4 space-y-3">
+          <div className="pt-4">
             <button
               onClick={() => setCurrentView('login')}
               className="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-bold text-xs transition-all shadow-md shadow-teal-600/20 cursor-pointer"
             >
               Connexion Administrateur
             </button>
-            <button
-              onClick={() => setRoleSwitcherOpen(true)}
-              className="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-bold text-xs transition-all border border-slate-700 cursor-pointer"
-            >
-              Simulateur de Rôles
-            </button>
           </div>
         </div>
-
-        <RoleSwitcherModal
-          isOpen={roleSwitcherOpen}
-          onClose={() => setRoleSwitcherOpen(false)}
-        />
       </div>
     );
   }
@@ -103,7 +113,6 @@ const MainAppContent: React.FC = () => {
         return (
           <HomeView
             onOpenPaymentModal={handleOpenPayment}
-            onOpenRoleSwitcher={() => setRoleSwitcherOpen(true)}
             onOpenSpotlight={() => setSpotlightOpen(true)}
           />
         );
@@ -134,6 +143,7 @@ const MainAppContent: React.FC = () => {
       case 'contact':
         return <ContactView />;
       case 'login':
+      case 'democonnexion':
         return <LoginView />;
       case 'notifications':
         return <NotificationsView />;
@@ -145,7 +155,6 @@ const MainAppContent: React.FC = () => {
         return (
           <DashboardView
             onOpenPaymentModal={() => handleOpenPayment()}
-            onOpenRoleSwitcher={() => setRoleSwitcherOpen(true)}
             onOpenPaymentForContrib={(contrib) => handleOpenPayment(contrib.amount)}
           />
         );
@@ -153,7 +162,6 @@ const MainAppContent: React.FC = () => {
         return (
           <HomeView
             onOpenPaymentModal={handleOpenPayment}
-            onOpenRoleSwitcher={() => setRoleSwitcherOpen(true)}
             onOpenSpotlight={() => setSpotlightOpen(true)}
           />
         );
@@ -170,7 +178,6 @@ const MainAppContent: React.FC = () => {
 
       {/* Top Main Navigation */}
       <Navbar
-        onOpenRoleSwitcher={() => setRoleSwitcherOpen(true)}
         onOpenPaymentModal={() => handleOpenPayment()}
         onOpenSpotlight={() => setSpotlightOpen(true)}
       />
@@ -184,11 +191,6 @@ const MainAppContent: React.FC = () => {
       <Footer />
 
       {/* Modals & Dialogs */}
-      <RoleSwitcherModal
-        isOpen={roleSwitcherOpen}
-        onClose={() => setRoleSwitcherOpen(false)}
-      />
-
       <PaymentModal
         isOpen={paymentModalOpen}
         onClose={() => setPaymentModalOpen(false)}

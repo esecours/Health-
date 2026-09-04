@@ -56,13 +56,11 @@ import {
 
 interface DashboardViewProps {
   onOpenPaymentModal: () => void;
-  onOpenRoleSwitcher: () => void;
   onOpenPaymentForContrib?: (contrib: Contribution) => void;
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({ 
   onOpenPaymentModal, 
-  onOpenRoleSwitcher,
   onOpenPaymentForContrib 
 }) => {
   const { 
@@ -234,13 +232,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
             <NotificationsCenter />
 
-            <button
-              onClick={onOpenRoleSwitcher}
-              className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer border border-slate-200"
-            >
-              <ShieldCheck className="w-4 h-4 text-teal-600" />
-              <span className="hidden lg:inline">Changer de rôle</span>
-            </button>
+
 
             <button
               onClick={onOpenPaymentModal}

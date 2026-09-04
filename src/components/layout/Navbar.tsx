@@ -20,13 +20,11 @@ import {
 } from 'lucide-react';
 
 interface NavbarProps {
-  onOpenRoleSwitcher: () => void;
   onOpenPaymentModal: () => void;
   onOpenSpotlight?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ 
-  onOpenRoleSwitcher, 
   onOpenPaymentModal,
   onOpenSpotlight
 }) => {
@@ -232,16 +230,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span>Centre de Notifications</span>
                     </button>
 
-                    <button
-                      onClick={() => {
-                        onOpenRoleSwitcher();
-                        setUserDropdownOpen(false);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-100 text-slate-700 text-xs font-medium flex items-center gap-2.5 transition-colors cursor-pointer"
-                    >
-                      <Shield className="w-4 h-4 text-slate-400" />
-                      <span>Simuler un autre rôle</span>
-                    </button>
+
 
                     <div className="my-1 border-t border-slate-100"></div>
 

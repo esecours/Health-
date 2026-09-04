@@ -28,13 +28,11 @@ import {
 
 interface HomeViewProps {
   onOpenPaymentModal: (amount?: number) => void;
-  onOpenRoleSwitcher: () => void;
   onOpenSpotlight?: () => void;
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({ 
   onOpenPaymentModal, 
-  onOpenRoleSwitcher,
   onOpenSpotlight 
 }) => {
   const { 
