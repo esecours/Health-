@@ -303,18 +303,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
-            <button
-              onClick={() => handleNavClick('vbg')}
-              className="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-black text-xs flex items-center justify-center gap-2 shadow-md"
-            >
-              <ShieldAlert className="w-4 h-4 text-rose-200 animate-pulse" />
-              <span>Dénonciation VBG (Anonyme & Sécurisée)</span>
-            </button>
-
-
-
+            {/* Bouton Connexion / Profil utilisateur placé EN HAUT pour une visibilité maximale */}
             {currentUser ? (
-              <div className="flex flex-col gap-2 pt-1">
+              <div className="flex flex-col gap-2">
                 <div className="p-3 bg-slate-50 rounded-2xl border border-slate-200 flex items-center justify-between">
                   <div className="flex items-center gap-2.5 min-w-0">
                     <img
@@ -362,12 +353,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                   handleNavClick('login');
                   setMobileMenuOpen(false);
                 }}
-                className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                className="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md border border-slate-700 transition-all"
               >
                 <User className="w-4 h-4 text-[#F5C84F]" />
                 <span>Connexion</span>
               </button>
             )}
+
+            {/* Bouton Dénonciation VBG placé en dessous de Connexion */}
+            <button
+              onClick={() => handleNavClick('vbg')}
+              className="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-black text-xs flex items-center justify-center gap-2 shadow-md"
+            >
+              <ShieldAlert className="w-4 h-4 text-rose-200 animate-pulse" />
+              <span>Dénonciation VBG (Anonyme & Sécurisée)</span>
+            </button>
 
             {currentUser && (
               <button
