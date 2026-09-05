@@ -165,73 +165,90 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* User Account / ERP Portal Button */}
             {currentUser ? (
-              <div className="relative">
-                <button
-                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                  className="flex items-center gap-2 p-1.5 pr-3 bg-slate-100 hover:bg-slate-200/80 rounded-2xl transition-all border border-slate-200 cursor-pointer"
-                >
-                  <img
-                    src={currentUser.avatarUrl || '/default_avatar.jpg'}
-                    alt={currentUser.firstName}
-                    className="w-8 h-8 rounded-xl object-cover"
-                  />
-                  <div className="text-left leading-tight hidden md:block">
-                    <span className="text-xs font-bold text-slate-900 block truncate max-w-[110px]">
-                      {currentUser.firstName}
-                    </span>
-                    <span className="text-[10px] text-[#144D32] font-semibold block truncate max-w-[110px]">
-                      {currentUser.role === 'volunteer' ? 'Bénévole' : 'ERP Membre'}
-                    </span>
-                  </div>
-                  <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
-                </button>
-
-                {/* Dropdown Menu */}
-                {userDropdownOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-slate-200 p-2 z-50 animate-in fade-in zoom-in-95 duration-150">
-                    <div className="p-3 bg-slate-50 rounded-xl mb-2 border border-slate-100">
-                      <div className="font-bold text-slate-900 text-sm">
-                        {currentUser.firstName} {currentUser.lastName}
-                      </div>
-                      <div className="text-xs text-[#144D32] font-semibold mt-0.5">
-                        {getRoleLabel(currentUser.role)}
-                      </div>
-                      <div className="text-[11px] text-slate-500 truncate mt-0.5">
-                        {currentUser.email}
-                      </div>
+              <div className="flex items-center gap-1.5">
+                <div className="relative">
+                  <button
+                    onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                    className="flex items-center gap-2 p-1.5 pr-3 bg-slate-100 hover:bg-slate-200/80 rounded-2xl transition-all border border-slate-200 cursor-pointer"
+                  >
+                    <img
+                      src={currentUser.avatarUrl || '/default_avatar.jpg'}
+                      alt={currentUser.firstName}
+                      className="w-8 h-8 rounded-xl object-cover"
+                    />
+                    <div className="text-left leading-tight hidden md:block">
+                      <span className="text-xs font-bold text-slate-900 block truncate max-w-[110px]">
+                        {currentUser.firstName}
+                      </span>
+                      <span className="text-[10px] text-[#144D32] font-semibold block truncate max-w-[110px]">
+                        {currentUser.role === 'volunteer' ? 'Bénévole' : 'ERP Membre'}
+                      </span>
                     </div>
+                    <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                  </button>
 
-                    {/* Caché - Mon Profil & Badge Officiel */}
+                  {/* Dropdown Menu */}
+                  {userDropdownOpen && (
+                    <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-slate-200 p-2 z-50 animate-in fade-in zoom-in-95 duration-150">
+                      <div className="p-3 bg-slate-50 rounded-xl mb-2 border border-slate-100">
+                        <div className="font-bold text-slate-900 text-sm">
+                          {currentUser.firstName} {currentUser.lastName}
+                        </div>
+                        <div className="text-xs text-[#144D32] font-semibold mt-0.5">
+                          {getRoleLabel(currentUser.role)}
+                        </div>
+                        <div className="text-[11px] text-slate-500 truncate mt-0.5">
+                          {currentUser.email}
+                        </div>
+                      </div>
 
-                    {/* Caché - Accéder à mon Espace ERP */}
+                      <button
+                        onClick={() => {
+                          setCurrentView('dashboard');
+                          setUserDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-100 text-slate-700 text-xs font-medium flex items-center gap-2.5 transition-colors cursor-pointer"
+                      >
+                        <LayoutDashboard className="w-4 h-4 text-teal-700" />
+                        <span>Mon Tableau de Bord</span>
+                      </button>
 
-                    <button
-                      onClick={() => {
-                        setCurrentView('notifications');
-                        setUserDropdownOpen(false);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-100 text-slate-700 text-xs font-medium flex items-center gap-2.5 transition-colors cursor-pointer"
-                    >
-                      <Bell className="w-4 h-4 text-teal-600" />
-                      <span>Centre de Notifications</span>
-                    </button>
+                      <button
+                        onClick={() => {
+                          setCurrentView('notifications');
+                          setUserDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-100 text-slate-700 text-xs font-medium flex items-center gap-2.5 transition-colors cursor-pointer"
+                      >
+                        <Bell className="w-4 h-4 text-teal-600" />
+                        <span>Centre de Notifications</span>
+                      </button>
 
+                      <div className="my-1 border-t border-slate-100"></div>
 
+                      <button
+                        onClick={() => {
+                          logout();
+                          setUserDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-3 py-2 rounded-xl hover:bg-rose-50 text-rose-600 text-xs font-semibold flex items-center gap-2.5 transition-colors cursor-pointer"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Se déconnecter</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
 
-                    <div className="my-1 border-t border-slate-100"></div>
-
-                    <button
-                      onClick={() => {
-                        logout();
-                        setUserDropdownOpen(false);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-xl hover:bg-rose-50 text-rose-600 text-xs font-semibold flex items-center gap-2.5 transition-colors cursor-pointer"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      <span>Se déconnecter</span>
-                    </button>
-                  </div>
-                )}
+                {/* Bouton direct Déconnexion rapide visible en permanence */}
+                <button
+                  onClick={() => logout()}
+                  className="px-2.5 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 hover:text-rose-800 border border-rose-200 rounded-2xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+                  title="Se déconnecter de la session (démo ou normale)"
+                >
+                  <LogOut className="w-3.5 h-3.5 text-rose-600" />
+                  <span className="hidden xl:inline">Déconnexion</span>
+                </button>
               </div>
             ) : (
               <button
@@ -297,11 +314,47 @@ export const Navbar: React.FC<NavbarProps> = ({
 
 
             {currentUser ? (
-              <>
-                {/* Caché - Mon Profil & Badge Officiel */}
+              <div className="flex flex-col gap-2 pt-1">
+                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-200 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <img
+                      src={currentUser.avatarUrl || '/default_avatar.jpg'}
+                      alt={currentUser.firstName}
+                      className="w-9 h-9 rounded-xl object-cover shrink-0 border border-slate-300"
+                    />
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold text-slate-900 truncate">
+                        {currentUser.firstName} {currentUser.lastName}
+                      </div>
+                      <div className="text-[10px] text-teal-700 font-semibold truncate">
+                        {currentUser.role === 'volunteer' ? 'Bénévole' : 'Membre ERP'} • {currentUser.email}
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                {/* Caché - Accéder à mon Espace ERP */}
-              </>
+                <button
+                  onClick={() => {
+                    handleNavClick('dashboard');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full py-2.5 bg-[#144D32] hover:bg-[#0f3b26] text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  <span>Mon Tableau de Bord</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    logout();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Se déconnecter</span>
+                </button>
+              </div>
             ) : (
               <button
                 id="mobile-connexion-btn"

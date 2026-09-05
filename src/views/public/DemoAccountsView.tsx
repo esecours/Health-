@@ -9,7 +9,9 @@ import {
   Coins, 
   HeartHandshake, 
   ArrowLeft, 
-  LogIn 
+  LogIn,
+  LogOut,
+  CheckCircle2
 } from 'lucide-react';
 
 interface DemoUserItem {
@@ -27,7 +29,7 @@ interface DemoUserItem {
 }
 
 export const DemoAccountsView: React.FC = () => {
-  const { login, setCurrentView } = useApp();
+  const { currentUser, login, logout, setCurrentView } = useApp();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
@@ -255,14 +257,79 @@ export const DemoAccountsView: React.FC = () => {
             <span>Retour à l'accueil</span>
           </button>
 
-          <button
-            onClick={() => setCurrentView('login')}
-            className="flex items-center gap-2 text-xs font-bold text-teal-700 hover:text-teal-900 bg-teal-50 hover:bg-teal-100 px-4 py-2 rounded-xl border border-teal-200 transition-colors shadow-xs cursor-pointer"
-          >
-            <LogIn className="w-4 h-4" />
-            <span>Accéder à la Connexion classique</span>
-          </button>
+          <div className="flex items-center gap-2.5 flex-wrap">
+            {currentUser && (
+              <button
+                type="button"
+                onClick={() => logout()}
+                className="flex items-center gap-2 text-xs font-bold text-rose-700 hover:text-white hover:bg-rose-600 bg-rose-50 px-4 py-2 rounded-xl border border-rose-200 transition-all shadow-xs cursor-pointer"
+                title="Se déconnecter immédiatement"
+              >
+                <LogOut className="w-4 h-4 text-rose-600 group-hover:text-white" />
+                <span>Se déconnecter</span>
+              </button>
+            )}
+
+            <button
+              onClick={() => setCurrentView('login')}
+              className="flex items-center gap-2 text-xs font-bold text-teal-700 hover:text-teal-900 bg-teal-50 hover:bg-teal-100 px-4 py-2 rounded-xl border border-teal-200 transition-colors shadow-xs cursor-pointer"
+            >
+              <LogIn className="w-4 h-4" />
+              <span>Accéder à la Connexion classique</span>
+            </button>
+          </div>
         </div>
+
+        {/* Active Session Notification Bar if connected */}
+        {currentUser && (
+          <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 border-2 border-emerald-400 rounded-3xl p-5 sm:p-6 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
+            <div className="flex items-center gap-4">
+              <div className="relative shrink-0">
+                <img
+                  src={currentUser.avatarUrl || '/default_avatar.jpg'}
+                  alt={currentUser.firstName}
+                  className="w-12 h-12 rounded-2xl object-cover border-2 border-emerald-500 shadow-xs"
+                />
+                <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 border-2 border-white rounded-full animate-pulse" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-black uppercase tracking-wider bg-emerald-600 text-white px-2 py-0.5 rounded-md flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3" />
+                    Session Active
+                  </span>
+                  <span className="text-xs text-slate-500 font-medium">
+                    {currentUser.email}
+                  </span>
+                </div>
+                <div className="text-base font-black text-slate-900 mt-0.5">
+                  Connecté en tant que <strong className="text-[#144D32]">{currentUser.firstName} {currentUser.lastName}</strong> ({currentUser.role})
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <button
+                type="button"
+                onClick={() => setCurrentView('dashboard')}
+                className="px-4 py-2.5 bg-[#144D32] hover:bg-[#0f3b26] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+              >
+                <span>Accéder à mon tableau de bord</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => logout()}
+                className="px-4 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 cursor-pointer"
+                title="Se déconnecter de la session active"
+              >
+                <LogOut className="w-4 h-4" />
+                <span>Se déconnecter</span>
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Hero Section */}
         <div className="bg-gradient-to-br from-slate-900 via-[#0F172A] to-[#144D32] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden space-y-4">
@@ -358,58 +425,101 @@ export const DemoAccountsView: React.FC = () => {
 
         {/* Demo Accounts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredUsers.map((user) => (
-            <div
-              key={user.id}
-              className="bg-white rounded-3xl border border-slate-200 hover:border-teal-500/60 p-6 flex flex-col justify-between shadow-xs hover:shadow-md transition-all group"
-            >
-              <div className="space-y-4">
-                {/* Header card: role and matricule */}
-                <div className="flex items-center justify-between gap-2">
-                  <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg border ${user.roleBadgeColor}`}>
-                    {user.roleBadge}
-                  </span>
-                  <span className="text-[11px] font-mono font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
-                    {user.matricule}
-                  </span>
+          {filteredUsers.map((user) => {
+            const isCurrent = currentUser?.email.toLowerCase() === user.email.toLowerCase();
+
+            return (
+              <div
+                key={user.id}
+                className={`rounded-3xl border p-6 flex flex-col justify-between shadow-xs transition-all group ${
+                  isCurrent 
+                    ? 'bg-emerald-50/30 border-emerald-400 ring-2 ring-emerald-500/30 shadow-md'
+                    : 'bg-white border-slate-200 hover:border-teal-500/60 hover:shadow-md'
+                }`}
+              >
+                <div className="space-y-4">
+                  {/* Header card: role and matricule */}
+                  <div className="flex items-center justify-between gap-2">
+                    <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg border ${user.roleBadgeColor}`}>
+                      {user.roleBadge}
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                      {isCurrent && (
+                        <span className="text-[10px] font-black uppercase text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                          Actif
+                        </span>
+                      )}
+                      <span className="text-[11px] font-mono font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
+                        {user.matricule}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Identity */}
+                  <div className="flex items-center gap-3 pt-1">
+                    <div className={`w-12 h-12 rounded-2xl font-display font-black text-lg flex items-center justify-center shadow-xs shrink-0 ${
+                      isCurrent 
+                        ? 'bg-[#144D32] text-[#F5C84F] border-2 border-emerald-400' 
+                        : 'bg-[#0F172A] text-teal-400 border border-slate-700'
+                    }`}>
+                      {user.name.charAt(0)}
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-black text-slate-900 group-hover:text-teal-700 transition-colors truncate flex items-center gap-1.5">
+                        <span>{user.name}</span>
+                        {isCurrent && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />}
+                      </h3>
+                      <p className="text-xs font-semibold text-slate-600 truncate">
+                        {user.poste}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Permissions scope */}
+                  <div className="p-3 bg-slate-50/80 rounded-2xl border border-slate-100 text-xs text-slate-600 leading-relaxed">
+                    <span className="font-bold text-slate-800 block mb-0.5">Permissions & Modules :</span>
+                    {user.permissions}
+                  </div>
                 </div>
 
-                {/* Identity */}
-                <div className="flex items-center gap-3 pt-1">
-                  <div className="w-12 h-12 rounded-2xl bg-[#0F172A] text-teal-400 font-display font-black text-lg flex items-center justify-center shadow-xs border border-slate-700 shrink-0">
-                    {user.name.charAt(0)}
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-sm font-black text-slate-900 group-hover:text-teal-700 transition-colors truncate">
-                      {user.name}
-                    </h3>
-                    <p className="text-xs font-semibold text-slate-600 truncate">
-                      {user.poste}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Permissions scope */}
-                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 text-xs text-slate-600 leading-relaxed">
-                  <span className="font-bold text-slate-800 block mb-0.5">Permissions & Modules :</span>
-                  {user.permissions}
+                {/* Action Button */}
+                <div className="pt-4 mt-4 border-t border-slate-100">
+                  {isCurrent ? (
+                    <div className="space-y-2">
+                      <button
+                        type="button"
+                        onClick={() => logout()}
+                        className="w-full py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+                        title="Se déconnecter de ce compte démo"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Se déconnecter de ce compte</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setCurrentView('dashboard')}
+                        className="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                      >
+                        <span>Tableau de bord</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => handle1ClickLogin(user.email)}
+                      className="w-full py-2.5 bg-slate-900 hover:bg-teal-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 group-hover:scale-[1.01] cursor-pointer"
+                    >
+                      <LogIn className="w-4 h-4 text-[#F5C84F]" />
+                      <span>{currentUser ? 'Basculer sur ce compte' : 'Se connecter avec ce compte'}</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  )}
                 </div>
               </div>
-
-              {/* Action Button: 1-Click Login */}
-              <div className="pt-4 mt-4 border-t border-slate-100">
-                <button
-                  type="button"
-                  onClick={() => handle1ClickLogin(user.email)}
-                  className="w-full py-2.5 bg-slate-900 hover:bg-teal-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 group-hover:scale-[1.01] cursor-pointer"
-                >
-                  <LogIn className="w-4 h-4 text-[#F5C84F]" />
-                  <span>Se connecter avec ce compte</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {filteredUsers.length === 0 && (
