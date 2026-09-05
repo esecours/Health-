@@ -1,6 +1,6 @@
 {
   "name": "HEALTH-DEV ONG",
-  "description": "Organisation féministe de jeunes engagée",
+  "description": "Organisation féministe de jeunes engagés",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

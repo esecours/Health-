@@ -21,12 +21,12 @@ import {
 
 
 export const NGO_INFO = {
-  name: 'HEALTHDEV ONG',
-  fullName: 'Health and Development (HEALTHDEV) ONG',
+  name: 'HEALTH-DEV ONG',
+  fullName: 'Health and Development (HEALTH-DEV) ONG',
   logoUrl: '/logo1.jpg',
   logo2Url: '/logo2.jpg',
-  tagline: 'Organisation féministe de jeunes activistes engagés pour l’épanouissement, le bien-être social et la défense des droits humains.',
-  heroSlogan: 'Organisation féministe de jeunes engagée pour la santé, les droits humains, l’égalité des sexes, l’autonomisation des femmes et le bien-être durable des communautés en République du Bénin.',
+  tagline: 'Organisation féministe de jeunes engagés',
+  heroSlogan: 'Organisation féministe de jeunes engagés pour la santé, les droits humains, l’égalité des sexes, l’autonomisation des femmes et le bien-être durable des communautés en République du Bénin.',
   
   // Structure Presentation
   structurePresentation: 'Health and Development (HEATHDEV) ONG est une organisation féministe de jeunes activistes engagés pour l’épanouissement, le bien-être social et la défense des droits humains. Ils luttent pour la promotion du genre et l’égalité des sexes, de la paix et de la sécurité, l’éradication des violences faites aux filles et aux femmes, contre la discrimination sous toutes ses formes. Elle base ses actions sur l’assouplissement progressive des normes patriarcales pour un monde plus justes. Ses actions concourent à l’atteinte des Objectifs de Développement Durable. HEALTHDEV ONG est une organisation légale enregistrée sous le n° 2025-416/MISP/DC/SGM/DAIC/SACC/SA du 22 Mai 2025, déclarée au Journal Officiel n° 14, Page 1062 du 15 Juillet 2025 en République du Bénin, IFU n° 6202535950485. La conformité aux nouvelles normes est déjà faite et en attente d’approbation.',
