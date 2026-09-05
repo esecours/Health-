@@ -162,8 +162,13 @@ export const LoginView: React.FC = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-8 space-y-12">
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center space-y-3">
-          <div className="w-14 h-14 rounded-2xl bg-[#0F172A] text-teal-400 flex items-center justify-center font-display font-black text-2xl mx-auto shadow-md border border-slate-700">
-            HD
+          <div className="w-16 h-16 rounded-2xl bg-white p-1 flex items-center justify-center mx-auto shadow-md border border-slate-200 overflow-hidden">
+            <img 
+              src="/logo1.jpg" 
+              alt="HEALTHDEV ONG" 
+              className="w-full h-full object-contain rounded-xl"
+              referrerPolicy="no-referrer" 
+            />
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-display">
             Espace Membres
