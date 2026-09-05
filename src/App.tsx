@@ -38,7 +38,7 @@ const MainAppContent: React.FC = () => {
     window.scrollTo(0, 0);
   }, [currentView]);
 
-  // Listen to path or hash containing "democonnexion" to switch view to "democonnexion"
+  // Listen to path or hash containing "democonnexion", "connexion" or "faire-un-don" to route accordingly
   useEffect(() => {
     const handleUrlRoute = () => {
       const path = window.location.pathname;
@@ -50,6 +50,38 @@ const MainAppContent: React.FC = () => {
         hash.includes('democonnexion')
       ) {
         setCurrentView('democonnexion');
+      } else if (
+        path === '/connexion' || 
+        path.endsWith('/connexion') || 
+        path === '/login' ||
+        path.endsWith('/login') ||
+        hash === '#connexion' || 
+        hash === '#login' ||
+        hash.includes('login') ||
+        hash.includes('connexion')
+      ) {
+        setCurrentView('login');
+      } else if (
+        path === '/faire-un-don' || 
+        path.endsWith('/faire-un-don') || 
+        path === '/don' ||
+        path.endsWith('/don') ||
+        hash === '#faire-un-don' || 
+        hash === '#don' ||
+        hash.includes('don')
+      ) {
+        setPaymentModalOpen(true);
+      } else if (
+        path === '/espace-erp' ||
+        path.endsWith('/espace-erp') ||
+        path === '/dashboard' ||
+        path.endsWith('/dashboard') ||
+        hash === '#espace-erp' ||
+        hash === '#dashboard' ||
+        hash.includes('dashboard') ||
+        hash.includes('espace-erp')
+      ) {
+        setCurrentView('dashboard');
       }
     };
     handleUrlRoute();

@@ -149,15 +149,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Notifications Center Bell */}
             <NotificationsCenter />
 
-            {/* Donate CTA Button (Green box with white text matching reference design) */}
-            <button
-              onClick={onOpenPaymentModal}
-              className="px-3.5 py-2 bg-[#144D32] hover:bg-[#0e3b26] text-white rounded-xl text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-[#144D32]/20 hover:scale-[1.02] cursor-pointer tracking-wider uppercase"
-            >
-              <Heart className="w-3.5 h-3.5 fill-[#F5C84F] text-[#F5C84F]" />
-              <span>Faire un Don</span>
-            </button>
-
             {/* User Account / ERP Portal Button */}
             {currentUser ? (
               <div className="relative">
@@ -196,28 +187,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => {
-                        if (setActiveDashboardTab) setActiveDashboardTab('my_profile');
-                        setCurrentView('dashboard');
-                        setUserDropdownOpen(false);
-                      }}
-                      className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#144D32]/10 hover:text-[#144D32] text-slate-800 text-xs font-bold flex items-center gap-2.5 transition-colors cursor-pointer"
-                    >
-                      <Award className="w-4 h-4 text-[#F5C84F]" />
-                      <span>Mon Profil & Badge Officiel</span>
-                    </button>
+                    {/* Caché - Mon Profil & Badge Officiel */}
 
-                    <button
-                      onClick={() => {
-                        setCurrentView('dashboard');
-                        setUserDropdownOpen(false);
-                      }}
-                      className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-100 text-slate-700 text-xs font-medium flex items-center gap-2.5 transition-colors cursor-pointer"
-                    >
-                      <LayoutDashboard className="w-4 h-4 text-teal-600" />
-                      <span>Accéder à mon Espace ERP</span>
-                    </button>
+                    {/* Caché - Accéder à mon Espace ERP */}
 
                     <button
                       onClick={() => {
@@ -247,15 +219,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
                 )}
               </div>
-            ) : (
-              <button
-                onClick={() => handleNavClick('login')}
-                className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer border border-slate-700"
-              >
-                <User className="w-3.5 h-3.5 text-[#F4A261]" />
-                <span>Connexion ERP</span>
-              </button>
-            )}
+            ) : null}
           </div>
 
           {/* Mobile Menu Button */}
@@ -307,54 +271,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>Dénonciation VBG (Anonyme & Sécurisée)</span>
             </button>
 
-            <button
-              onClick={() => {
-                onOpenPaymentModal();
-                setMobileMenuOpen(false);
-              }}
-              className="w-full py-3 bg-[#144D32] hover:bg-[#0d3623] text-white rounded-xl font-black text-xs flex items-center justify-center gap-2 shadow-md uppercase tracking-wider"
-            >
-              <Heart className="w-4 h-4 fill-[#F5C84F] text-[#F5C84F]" />
-              <span>Faire un Don Maintenant</span>
-            </button>
+
 
             {currentUser ? (
               <>
-                <button
-                  onClick={() => {
-                    if (setActiveDashboardTab) setActiveDashboardTab('my_profile');
-                    setCurrentView('dashboard');
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full py-2.5 bg-[#144D32] text-white rounded-xl font-black text-xs flex items-center justify-center gap-2 cursor-pointer shadow-sm"
-                >
-                  <Award className="w-4 h-4 text-[#F5C84F]" />
-                  <span>Mon Profil & Badge Officiel</span>
-                </button>
+                {/* Caché - Mon Profil & Badge Officiel */}
 
-                <button
-                  onClick={() => {
-                    setCurrentView('dashboard');
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full py-2.5 bg-slate-900 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2"
-                >
-                  <LayoutDashboard className="w-4 h-4 text-[#F5C84F]" />
-                  <span>Accéder à mon Espace ERP ({getRoleLabel(currentUser.role)})</span>
-                </button>
+                {/* Caché - Accéder à mon Espace ERP */}
               </>
-            ) : (
-              <button
-                onClick={() => {
-                  handleNavClick('login');
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full py-2.5 bg-slate-900 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2"
-              >
-                <User className="w-4 h-4 text-[#F5C84F]" />
-                <span>Connexion Membre / Bénévole</span>
-              </button>
-            )}
+            ) : null}
 
             <button
               onClick={() => {
