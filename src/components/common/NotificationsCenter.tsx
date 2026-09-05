@@ -52,6 +52,11 @@ export const NotificationsCenter: React.FC<NotificationsCenterProps> = ({ classN
     };
   }, [isOpen]);
 
+  // Ne rien afficher tant que l'utilisateur n'est pas connecté
+  if (!currentUser) {
+    return null;
+  }
+
   const isVolunteer = currentUser?.role === 'volunteer';
 
   // Filter notifications according to the active role

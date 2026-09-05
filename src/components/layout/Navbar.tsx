@@ -160,8 +160,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>Dénonciation VBG</span>
             </button>
 
-            {/* Notifications Center Bell */}
-            <NotificationsCenter />
+            {/* Notifications Center Bell - Uniquement si connecté */}
+            {currentUser && <NotificationsCenter />}
 
             {/* User Account / ERP Portal Button */}
             {currentUser ? (
@@ -247,7 +247,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Mobile Menu Button */}
           <div className="flex sm:hidden items-center gap-1.5">
-            <NotificationsCenter />
+            {currentUser && <NotificationsCenter />}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
@@ -316,16 +316,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             )}
 
-            <button
-              onClick={() => {
-                setCurrentView('notifications');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs flex items-center justify-center gap-2 cursor-pointer transition-colors"
-            >
-              <Bell className="w-4 h-4 text-teal-600" />
-              <span>Centre de Notifications</span>
-            </button>
+            {currentUser && (
+              <button
+                onClick={() => {
+                  setCurrentView('notifications');
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs flex items-center justify-center gap-2 cursor-pointer transition-colors"
+              >
+                <Bell className="w-4 h-4 text-teal-600" />
+                <span>Centre de Notifications</span>
+              </button>
+            )}
           </div>
         </div>
       )}

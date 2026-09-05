@@ -195,6 +195,55 @@ export const NotificationsView: React.FC = () => {
     return 'Consulter les détails';
   };
 
+  // Les notifications ne doivent pas s'afficher tant que l'utilisateur n'est pas encore connecté
+  if (!currentUser) {
+    return (
+      <div className="bg-slate-50 min-h-screen py-12 sm:py-20 flex items-center justify-center">
+        <div className="max-w-md w-full mx-auto px-4 space-y-6">
+          <div className="flex justify-start">
+            <button
+              onClick={() => setCurrentView('home')}
+              className="px-3.5 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer text-xs"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Retour à l'accueil</span>
+            </button>
+          </div>
+
+          <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-xl text-center space-y-6 relative overflow-hidden">
+            <div className="w-16 h-16 bg-slate-100 text-slate-700 rounded-2xl flex items-center justify-center mx-auto border border-slate-200 shadow-inner">
+              <BellOff className="w-8 h-8 text-slate-500" />
+            </div>
+
+            <div className="space-y-2">
+              <h1 className="text-2xl font-black text-slate-900 font-display">
+                Connexion Requise
+              </h1>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Le centre de notifications et les alertes officielles sont strictement réservés aux membres et administrateurs connectés. Veuillez vous authentifier pour accéder à vos notifications.
+              </p>
+            </div>
+
+            <div className="pt-2 flex flex-col gap-3">
+              <button
+                onClick={() => setCurrentView('login')}
+                className="w-full py-3 bg-[#144D32] hover:bg-[#0f3b26] text-white rounded-xl font-bold text-sm transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
+              >
+                <span>Se connecter à mon compte</span>
+              </button>
+              <button
+                onClick={() => setCurrentView('democonnexion')}
+                className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs transition-all cursor-pointer"
+              >
+                Accéder via un compte démo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-slate-50 min-h-screen py-8 sm:py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
