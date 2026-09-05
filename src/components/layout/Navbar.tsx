@@ -44,7 +44,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'partners', label: 'Partenaires' },
     { id: 'news', label: 'Actualités' },
     { id: 'resources', label: 'Ressources' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'Contact' },
+    { id: 'login', label: 'Connexion' }
   ];
 
   const handleNavClick = (viewId: string) => {
@@ -97,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 text-xs font-bold text-slate-700">
-            {navLinks.slice(0, 6).map((link) => (
+            {navLinks.filter(l => l.id !== 'login').slice(0, 5).map((link) => (
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
@@ -118,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
               </button>
               <div className="absolute right-0 top-full mt-1 w-52 bg-white rounded-2xl shadow-2xl border border-slate-200 p-2 hidden group-hover:block animate-in fade-in slide-in-from-top-2 duration-150 z-50">
-                {navLinks.slice(6).map((link) => (
+                {navLinks.filter(l => l.id !== 'login').slice(5).map((link) => (
                   <button
                     key={link.id}
                     onClick={() => handleNavClick(link.id)}
@@ -133,6 +134,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                 ))}
               </div>
             </div>
+
+            {/* Menu Principal - Page Connexion */}
+            <button
+              id="main-nav-connexion-link"
+              onClick={() => handleNavClick('login')}
+              className={`px-3 py-2 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 ${
+                currentView === 'login'
+                  ? 'bg-[#144D32]/10 text-[#144D32] font-black'
+                  : 'hover:bg-slate-100 hover:text-slate-900 text-slate-700'
+              }`}
+            >
+              <span>Connexion</span>
+            </button>
           </nav>
 
           {/* Right Action Buttons */}

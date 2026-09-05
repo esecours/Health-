@@ -166,11 +166,8 @@ export const LoginView: React.FC = () => {
             HD
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-display">
-            Portail ERP & Espace Membres
+            Espace Membres
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600">
-            Système Intégré de Gestion de HEALTHDEV ONG (Parakou, Bénin)
-          </p>
         </div>
 
         {/* Demo Mode Alert Banner */}
