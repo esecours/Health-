@@ -4,17 +4,12 @@ import {
   Sparkles, 
   ArrowRight, 
   Search, 
-  ShieldCheck, 
-  Copy, 
-  Check, 
-  KeyRound, 
   Users, 
   Building2, 
   Coins, 
   HeartHandshake, 
-  Award,
-  ArrowLeft,
-  LogIn
+  ArrowLeft, 
+  LogIn 
 } from 'lucide-react';
 
 interface DemoUserItem {
@@ -35,7 +30,6 @@ export const DemoAccountsView: React.FC = () => {
   const { login, setCurrentView } = useApp();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
 
   const demoUsers: DemoUserItem[] = [
     // Direction Exécutive & Staff
@@ -236,12 +230,6 @@ export const DemoAccountsView: React.FC = () => {
     }
   };
 
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedEmail(text);
-    setTimeout(() => setCopiedEmail(null), 2000);
-  };
-
   const filteredUsers = demoUsers.filter(user => {
     const matchesCategory = selectedCategory === 'all' || user.category === selectedCategory;
     const matchesSearch = 
@@ -291,17 +279,6 @@ export const DemoAccountsView: React.FC = () => {
           <p className="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
             Explorez l'ERP intégré de HEALTHDEV ONG avec l'ensemble des profils opérationnels. Cliquez sur <span className="font-bold text-[#F5C84F]">« Se connecter »</span> sur le rôle de votre choix pour vous authentifier instantanément et visualiser ses tableaux de bord et permissions.
           </p>
-
-          <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-300">
-            <span className="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
-              <KeyRound className="w-3.5 h-3.5 text-[#F5C84F]" />
-              Mot de passe universel : <strong className="text-white">password123</strong>
-            </span>
-            <span className="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
-              <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
-              {demoUsers.length} profils disponibles en 1-clic
-            </span>
-          </div>
         </div>
 
         {/* Filters and Search Bar */}
@@ -416,32 +393,6 @@ export const DemoAccountsView: React.FC = () => {
                 <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 text-xs text-slate-600 leading-relaxed">
                   <span className="font-bold text-slate-800 block mb-0.5">Permissions & Modules :</span>
                   {user.permissions}
-                </div>
-
-                {/* Credentials box */}
-                <div className="p-3 bg-teal-50/50 rounded-2xl border border-teal-100 space-y-1.5 text-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-500 text-[11px]">E-mail :</span>
-                    <button
-                      type="button"
-                      onClick={() => handleCopy(user.email)}
-                      className="text-teal-700 hover:text-teal-900 font-mono font-bold flex items-center gap-1 cursor-pointer"
-                      title="Copier l'e-mail"
-                    >
-                      <span className="truncate max-w-[180px]">{user.email}</span>
-                      {copiedEmail === user.email ? (
-                        <Check className="w-3 h-3 text-emerald-600" />
-                      ) : (
-                        <Copy className="w-3 h-3" />
-                      )}
-                    </button>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-500 text-[11px]">Mot de passe :</span>
-                    <span className="font-mono font-bold text-slate-800 bg-white px-2 py-0.5 rounded border border-slate-200">
-                      password123
-                    </span>
-                  </div>
                 </div>
               </div>
 
