@@ -202,7 +202,7 @@ export const LoginView: React.FC = () => {
                   : 'text-slate-400 hover:text-slate-600'
               }`}
             >
-              Se Connecter
+              Connexion
             </button>
             <button
               onClick={() => {
@@ -266,11 +266,23 @@ export const LoginView: React.FC = () => {
 
               <button
                 type="submit"
+                id="login-submit-btn"
                 className="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-bold text-xs shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <span>Se connecter à l'ERP</span>
+                <span>Connexion</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
+
+              <div className="pt-2 text-center">
+                <button
+                  type="button"
+                  onClick={() => setCurrentView('demo')}
+                  className="text-xs text-teal-700 hover:text-teal-900 font-semibold hover:underline inline-flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#F5C84F]" />
+                  <span>Accéder à tous les comptes démo (/demo)</span>
+                </button>
+              </div>
             </form>
           ) : (
             <form onSubmit={handleSignupSubmit} className="space-y-4">

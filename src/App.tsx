@@ -21,6 +21,7 @@ import { NewsView } from './views/public/NewsView';
 import { ResourcesView } from './views/public/ResourcesView';
 import { ContactView } from './views/public/ContactView';
 import { LoginView } from './views/public/LoginView';
+import { DemoAccountsView } from './views/public/DemoAccountsView';
 import { NotificationsView } from './views/public/NotificationsView';
 import { VbgReportView } from './views/public/VbgReportView';
 
@@ -44,12 +45,18 @@ const MainAppContent: React.FC = () => {
       const path = window.location.pathname;
       const hash = window.location.hash;
       if (
+        path === '/demo' ||
+        path === '/demo/' ||
+        path.endsWith('/demo') ||
         path === '/democonnexion' || 
         path.endsWith('/democonnexion') || 
+        hash === '#demo' ||
+        hash === '#/demo' ||
+        hash.includes('demo') ||
         hash === '#democonnexion' || 
         hash.includes('democonnexion')
       ) {
-        setCurrentView('democonnexion');
+        setCurrentView('demo');
       } else if (
         path === '/connexion' || 
         path.endsWith('/connexion') || 
@@ -175,8 +182,10 @@ const MainAppContent: React.FC = () => {
       case 'contact':
         return <ContactView />;
       case 'login':
-      case 'democonnexion':
         return <LoginView />;
+      case 'demo':
+      case 'democonnexion':
+        return <DemoAccountsView />;
       case 'notifications':
         return <NotificationsView />;
       case 'vbg':

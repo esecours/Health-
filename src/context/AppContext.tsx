@@ -551,7 +551,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const login = (email: string): boolean => {
-    const found = users.find(u => u.email.toLowerCase() === email.toLowerCase().trim());
+    const normalized = email.toLowerCase().trim();
+    const found = users.find(u => 
+      u.email.toLowerCase() === normalized ||
+      (normalized === 'regina.aho@healthdev.ong' && (u.email.toLowerCase() === 'ahoregina12@gmail.com' || u.lastName.toLowerCase() === 'aho'))
+    );
     if (found) {
       if (found.status === 'suspended') {
         alert('Votre compte a été suspendu par l\'administration de HEALTHDEV ONG. Veuillez contacter contact@healthdev.ong.');

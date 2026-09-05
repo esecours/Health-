@@ -219,7 +219,16 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
                 )}
               </div>
-            ) : null}
+            ) : (
+              <button
+                id="navbar-connexion-btn"
+                onClick={() => handleNavClick('login')}
+                className="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer border border-slate-700"
+              >
+                <User className="w-3.5 h-3.5 text-[#F5C84F]" />
+                <span>Connexion</span>
+              </button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -279,7 +288,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                 {/* Caché - Accéder à mon Espace ERP */}
               </>
-            ) : null}
+            ) : (
+              <button
+                id="mobile-connexion-btn"
+                onClick={() => {
+                  handleNavClick('login');
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+              >
+                <User className="w-4 h-4 text-[#F5C84F]" />
+                <span>Connexion</span>
+              </button>
+            )}
 
             <button
               onClick={() => {
