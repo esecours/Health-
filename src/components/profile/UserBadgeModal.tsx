@@ -78,7 +78,6 @@ export const UserBadgeModal: React.FC<UserBadgeModalProps> = ({
   const posteOccupe = user.poste?.trim() || getRoleBadgeLabel(user.role);
   const userAddress = user.address || `${user.city || 'Parakou'}, ${user.department || 'Borgou'}`;
   const userPhone = user.phone || '+229 01 92 43 15 95';
-  const userEmail = user.email || 'membre@healthdev.ong';
   const defaultAvatarByGender = user.gender === 'F' ? '/default_avatar_f.jpg' : '/default_avatar_m.jpg';
   const userAvatar = user.avatarUrl || defaultAvatarByGender;
 
@@ -508,10 +507,6 @@ export const UserBadgeModal: React.FC<UserBadgeModalProps> = ({
                         {userPhone}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center py-0.5 border-b border-slate-200/60">
-                      <span className="text-slate-400 font-bold uppercase text-[9px]">Email Officiel</span>
-                      <span className="font-medium text-slate-700 truncate max-w-[190px]">{userEmail}</span>
-                    </div>
                     <div className="flex justify-between items-center py-0.5">
                       <span className="text-slate-400 font-bold uppercase text-[9px]">Résidence / Zone</span>
                       <span className="font-bold text-slate-800 flex items-center gap-1">
@@ -660,10 +655,6 @@ export const UserBadgeModal: React.FC<UserBadgeModalProps> = ({
                     <div className="flex justify-between items-center py-0.5 text-[9px]">
                       <span className="text-slate-400">Contact Téléphone :</span>
                       <span className="font-mono text-white">{userPhone}</span>
-                    </div>
-                    <div className="flex justify-between items-center py-0.5 text-[9px]">
-                      <span className="text-slate-400">Email :</span>
-                      <span className="text-slate-300 truncate max-w-[190px]">{userEmail}</span>
                     </div>
                     <div className="flex justify-between items-center py-0.5 text-[9px]">
                       <span className="text-slate-400">Adresse / Résidence :</span>
