@@ -1,6 +1,6 @@
 {
-  "name": "HEALTHDEV ONG – Plateforme & ERP",
-  "description": "Plateforme web officielle et système de gestion intégrée (ERP) pour HEALTHDEV ONG – Organisation féministe de jeunes pour la santé, l'égalité des sexes et le développement communautaire au Bénin.",
+  "name": "HEALTH-DEV ONG",
+  "description": "Organisation féministe de jeunes engagée",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
