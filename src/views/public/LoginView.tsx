@@ -4,21 +4,13 @@ import { UserRole, UserProfile } from '../../types';
 import { 
   User, 
   Lock, 
-  ShieldCheck, 
   ArrowRight, 
-  Sparkles, 
-  CheckCircle2,
-  Users,
-  Building,
-  HeartHandshake,
-  Phone,
-  MapPin,
-  Smile,
-  Info
+  Phone, 
+  MapPin 
 } from 'lucide-react';
 
 export const LoginView: React.FC = () => {
-  const { login, setCurrentView, currentView, users, addUser, setCurrentUser } = useApp();
+  const { login, setCurrentView, users, addUser, setCurrentUser } = useApp();
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
   
   // Login State (champs vides par défaut)
@@ -37,8 +29,6 @@ export const LoginView: React.FC = () => {
   
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
-
-  const isDemoMode = currentView === 'democonnexion';
 
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,56 +97,6 @@ export const LoginView: React.FC = () => {
     }, 1500);
   };
 
-  const handleQuickLogin = (userEmail: string) => {
-    login(userEmail, 'password123');
-    setCurrentView('dashboard');
-  };
-
-  const demoAccounts = [
-    {
-      role: 'Directeur Exécutif',
-      title: 'Rolland GNANGNI (DE)',
-      email: 'rolland.gnangni@healthdev.ong',
-      roleKey: 'super_admin',
-      desc: 'Direction générale, gestion opérationnelle des programmes, administration globale.'
-    },
-    {
-      role: 'Présidente CA',
-      title: 'Régina AHO (Présidente du CA)',
-      email: 'regina.aho@healthdev.ong',
-      roleKey: 'admin',
-      desc: 'Supervision de gouvernance, orientation stratégique et validation des instances.'
-    },
-    {
-      role: 'Trésorier Général / RAF',
-      title: 'C. Rodrigue HOUNKPATIN / Eliane AKLI',
-      email: 'rodrigue.hounkpatin@healthdev.ong',
-      roleKey: 'financial_manager',
-      desc: 'Trésorerie, recouvrement des cotisations, validation Mobile Money & rapports financiers.'
-    },
-    {
-      role: 'Contrôle Interne',
-      title: 'Moïse AHISSOU (Commissaire aux Comptes)',
-      email: 'moise.ahissou@healthdev.ong',
-      roleKey: 'admin',
-      desc: 'Audit interne, conformité statutaire et transparence des opérations.'
-    },
-    {
-      role: 'Coord. Programmes',
-      title: 'Néonelle P. HOUNGNISSI (CoP)',
-      email: 'neonelle.houngnissi@healthdev.ong',
-      roleKey: 'program_manager',
-      desc: 'Coordination des projets PESCA, VBG, JIF et affectation des missions terrain.'
-    },
-    {
-      role: 'Volontaire / Membre',
-      title: 'Marcelline SOUNNOUKINNY (Bénévole)',
-      email: 'marcelline.sounnoukinny@healthdev.ong',
-      roleKey: 'volunteer',
-      desc: 'Espace membre, participation aux activités, cotisations, badge officiel et attestations.'
-    }
-  ];
-
   return (
     <div className="bg-slate-50 min-h-screen py-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-8 space-y-12">
@@ -174,19 +114,6 @@ export const LoginView: React.FC = () => {
             Espace Membres
           </h1>
         </div>
-
-        {/* Demo Mode Alert Banner */}
-        {isDemoMode && (
-          <div className="max-w-2xl mx-auto p-4 bg-teal-50 border border-teal-200 rounded-2xl text-teal-900 space-y-1 shadow-xs text-xs">
-            <h4 className="font-bold flex items-center gap-1.5 text-teal-800">
-              <Sparkles className="w-4 h-4 text-teal-600 animate-pulse" />
-              Interface Secrète de Démo (/democonnexion)
-            </h4>
-            <p className="text-slate-600 leading-normal">
-              Vous avez accédé au portail technique. Utilisez l'un des profils préconfigurés ci-dessous pour tester l'ERP en un clic.
-            </p>
-          </div>
-        )}
 
         {/* Form Box */}
         <div className="max-w-md mx-auto bg-white p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
@@ -275,17 +202,6 @@ export const LoginView: React.FC = () => {
                 <span>Connexion</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
-
-              <div className="pt-2 text-center">
-                <button
-                  type="button"
-                  onClick={() => setCurrentView('demo')}
-                  className="text-xs text-teal-700 hover:text-teal-900 font-semibold hover:underline inline-flex items-center gap-1.5 cursor-pointer"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-[#F5C84F]" />
-                  <span>Accéder à tous les comptes démo (/demo)</span>
-                </button>
-              </div>
             </form>
           ) : (
             <form onSubmit={handleSignupSubmit} className="space-y-4">
@@ -409,56 +325,6 @@ export const LoginView: React.FC = () => {
             </form>
           )}
         </div>
-
-        {/* 1-Click Demo Profile Switcher Section - ONLY shown in /democonnexion mode */}
-        {isDemoMode && (
-          <div className="space-y-6 pt-6 border-t border-slate-200 animate-in fade-in slide-in-from-bottom-4 duration-300">
-            <div className="text-center space-y-1">
-              <span className="text-xs font-extrabold uppercase tracking-widest text-teal-700 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
-                Connexion Rapide Démo • Rôles Préconfigurés
-              </span>
-              <h3 className="text-xl font-black text-slate-900 font-display">
-                Testez la plateforme avec les 6 profils clés
-              </h3>
-              <p className="text-xs text-slate-500">
-                Cliquez simplement sur un rôle pour vous connecter instantanément et explorer son tableau de bord spécifique.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {demoAccounts.map((acc, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => handleQuickLogin(acc.email)}
-                  className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-teal-500 hover:shadow-md transition-all text-left flex flex-col justify-between group cursor-pointer"
-                >
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-teal-800 bg-teal-50 px-2 py-0.5 rounded-md border border-teal-200">
-                        {acc.role}
-                      </span>
-                      <Sparkles className="w-3.5 h-3.5 text-teal-600 group-hover:scale-110 transition-transform" />
-                    </div>
-
-                    <h4 className="font-bold text-slate-900 text-sm leading-snug group-hover:text-teal-700 transition-colors">
-                      {acc.title}
-                    </h4>
-
-                    <p className="text-[11px] text-slate-500 leading-relaxed">
-                      {acc.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-600">
-                    <span>Connexion 1-clic</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

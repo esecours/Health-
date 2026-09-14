@@ -450,15 +450,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
 
-  // Current logged in user (default to Super Admin Rolland GNANGNI (DE), or toggle to any member)
-  const [currentUser, setCurrentUser] = useState<UserProfile | null>(() => {
-    const storedId = localStorage.getItem(STORAGE_KEYS.CURRENT_USER_ID);
-    if (storedId) {
-      const found = users.find(u => u.id === storedId);
-      if (found && !found.email.includes('@healthdev.org') && found.id !== 'usr-1') return found;
-    }
-    return users.find(u => u.id === 'usr-staff-1') || users[0] || null;
-  });
+  // Current logged in user (strictly null by default; all users start disconnected)
+  const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
 
   const [currentView, setCurrentView] = useState<string>(() => loadState(STORAGE_KEYS.CURRENT_VIEW, 'home'));
   const [activeDashboardTab, setActiveDashboardTab] = useState<string>('overview');

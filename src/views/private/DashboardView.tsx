@@ -51,7 +51,8 @@ import {
   ExternalLink,
   User as UserIcon,
   Camera,
-  LogOut
+  LogOut,
+  Lock
 } from 'lucide-react';
 
 
@@ -188,6 +189,31 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       default: return null;
     }
   };
+
+  // Helper for unauthenticated view
+  if (!currentUser) {
+    return (
+      <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center bg-slate-50">
+        <div className="max-w-md w-full bg-white border border-slate-200 rounded-3xl p-8 shadow-xs space-y-6">
+          <div className="w-16 h-16 bg-teal-50 text-teal-700 rounded-2xl flex items-center justify-center mx-auto border border-teal-100">
+            <Lock className="w-8 h-8" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-xl font-bold text-slate-900 font-display">Espace Réservé aux Membres</h2>
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Veuillez vous connecter avec vos identifiants pour accéder à votre tableau de bord et à l'espace de gestion de HEALTHDEV ONG.
+            </p>
+          </div>
+          <button
+            onClick={() => setCurrentView('login')}
+            className="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-bold text-xs transition-all shadow-xs cursor-pointer flex items-center justify-center gap-2"
+          >
+            <span>Se connecter</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-slate-50 min-h-screen py-8">

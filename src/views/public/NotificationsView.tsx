@@ -231,12 +231,6 @@ export const NotificationsView: React.FC = () => {
               >
                 <span>Se connecter à mon compte</span>
               </button>
-              <button
-                onClick={() => setCurrentView('democonnexion')}
-                className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs transition-all cursor-pointer"
-              >
-                Accéder via un compte démo
-              </button>
             </div>
           </div>
         </div>
